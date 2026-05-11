@@ -1,0 +1,142 @@
+import { useEffect, useRef, useState } from 'react';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+
+import { borders } from './tokens/borders';
+import { lightColors } from './tokens/colors';
+import { radius } from './tokens/radius';
+import { spacing } from './tokens/spacing';
+import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { Text } from './Text';
+
+export interface OtpInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  /** Number of digits — typically 4 or 6. */
+  length?: number;
+  label?: string;
+  error?: string;
+  autoFocus?: boolean;
+  onComplete?: (value: string) => void;
+}
+
+const CELL_SIZE = 44;
+
+export function OtpInput({
+  value,
+  onChange,
+  length = 6,
+  label,
+  error,
+  autoFocus,
+  onComplete,
+}: OtpInputProps) {
+  const [focused, setFocused] = useState(false);
+  const ref = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (value.length === length && onComplete) {
+      onComplete(value);
+    }
+  }, [value, length, onComplete]);
+
+  const handleChange = (text: string) => {
+    const digits = text.replace(/\D/g, '').slice(0, length);
+    onChange(digits);
+  };
+
+  const cells = Array.from({ length }, (_, i) => value[i] ?? '');
+
+  return (
+    <View style={styles.wrapper}>
+      {label ? (
+        <Text variant="caption" style={styles.label}>
+          {label}
+        </Text>
+      ) : null}
+      <Pressable
+        accessibilityRole="text"
+        accessibilityLabel="Verification code"
+        onPress={() => ref.current?.focus()}
+        style={styles.cellsRow}>
+        {cells.map((char, idx) => {
+          const isActive = focused && idx === Math.min(value.length, length - 1);
+          return (
+            <View
+              key={idx}
+              style={[
+                styles.cell,
+                isActive && styles.cellActive,
+                error ? styles.cellError : null,
+              ]}>
+              <Text variant="body" style={styles.cellText}>
+                {char}
+              </Text>
+            </View>
+          );
+        })}
+        <TextInput
+          ref={ref}
+          value={value}
+          onChangeText={handleChange}
+          autoFocus={autoFocus}
+          keyboardType="number-pad"
+          maxLength={length}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          style={styles.hiddenInput}
+          textContentType="oneTimeCode"
+          autoComplete="sms-otp"
+          caretHidden
+        />
+      </Pressable>
+      {error ? (
+        <Text variant="caption" tone="danger">
+          {error}
+        </Text>
+      ) : null}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    gap: spacing[1],
+  },
+  label: {
+    fontWeight: '500',
+    color: lightColors.textSecondary,
+  },
+  cellsRow: {
+    flexDirection: 'row',
+    gap: spacing[2],
+  },
+  cell: {
+    width: CELL_SIZE,
+    height: CELL_SIZE,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: lightColors.surfacePrimary,
+    borderColor: lightColors.border,
+    borderWidth: borders.hair,
+    borderRadius: radius.md,
+  },
+  cellActive: {
+    borderColor: lightColors.brand,
+    borderWidth: borders.thin,
+  },
+  cellError: {
+    borderColor: lightColors.danger,
+    borderWidth: borders.thin,
+  },
+  cellText: {
+    fontFamily: fontFamily.sans,
+    fontSize: fontSize.lg,
+    fontWeight: fontWeight.medium,
+  },
+  hiddenInput: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    opacity: 0,
+  },
+});
