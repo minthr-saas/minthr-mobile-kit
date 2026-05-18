@@ -1,0 +1,64 @@
+import { Stack } from 'expo-router';
+import { useState } from 'react';
+import { ScrollView } from 'react-native';
+
+import { SegmentedControl, Text, spacing } from '@minthr-saas/mobile-ui-kit';
+
+import { Section } from './_components/Section';
+
+export default function SegmentedControlDemo() {
+  const [period, setPeriod] = useState<'day' | 'week' | 'month'>('week');
+  const [view, setView] = useState<'list' | 'grid'>('list');
+  const [tab, setTab] = useState<'all' | 'mine' | 'archived'>('all');
+
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'SegmentedControl' }} />
+
+      <Text variant="body" tone="secondary">
+        Pick-one selector with a pill-style track. Up to ~4 short labels — beyond that, prefer
+        Tabs or a Select.
+      </Text>
+
+      <Section label="Time range (full width — default)">
+        <SegmentedControl
+          options={[
+            { value: 'day', label: 'Day' },
+            { value: 'week', label: 'Week' },
+            { value: 'month', label: 'Month' },
+          ]}
+          value={period}
+          onChange={setPeriod}
+        />
+        <Text variant="caption" tone="muted">
+          Selected: {period}
+        </Text>
+      </Section>
+
+      <Section label="Two options (auto width)">
+        <SegmentedControl
+          options={[
+            { value: 'list', label: 'List' },
+            { value: 'grid', label: 'Grid' },
+          ]}
+          value={view}
+          onChange={setView}
+          fullWidth={false}
+        />
+      </Section>
+
+      <Section label="Disabled">
+        <SegmentedControl
+          options={[
+            { value: 'all', label: 'All' },
+            { value: 'mine', label: 'Mine' },
+            { value: 'archived', label: 'Archived' },
+          ]}
+          value={tab}
+          onChange={setTab}
+          disabled
+        />
+      </Section>
+    </ScrollView>
+  );
+}
