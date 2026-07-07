@@ -12,6 +12,7 @@ import { lightColors } from './tokens/colors';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
 import { fontFamily, fontSize, fontWeight, lineHeight } from './tokens/typography';
+import { isRTL } from './utils/rtl';
 
 export interface TextareaProps extends TextInputProps {
   label?: string;
@@ -50,6 +51,7 @@ export function Textarea({
         }}
         style={[
           styles.input,
+          { textAlign: isRTL() ? 'right' : 'left' },
           { minHeight: Math.max(rows, 1) * fontSize.md * lineHeight.normal + spacing[3] * 2 },
           focused && styles.inputFocused,
           error ? styles.inputError : null,

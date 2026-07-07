@@ -20,12 +20,14 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Text } from './Text';
 import { borders } from './tokens/borders';
 import { lightColors } from './tokens/colors';
 import { shadows } from './tokens/shadows';
 import { spacing } from './tokens/spacing';
+import { rtlSign } from './utils/rtl';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -35,7 +37,8 @@ export type DrawerSize = 'sm' | 'md' | 'lg' | 'full';
 export interface DrawerProps {
   visible: boolean;
   onClose: () => void;
-  title?: string;
+  /** Header title — string renders as subtitle Text, or pass a node for custom content. */
+  title?: string | ReactNode;
   children?: ReactNode;
   /** Footer slot — typically action buttons. */
   footer?: ReactNode;
@@ -45,6 +48,8 @@ export interface DrawerProps {
   size?: DrawerSize;
   /** Tap on backdrop dismisses. Defaults to true. */
   dismissOnBackdrop?: boolean;
+  /** Suppress the default title + close-button header. Consumer renders its own top row. */
+  hideDefaultHeader?: boolean;
 }
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -67,8 +72,10 @@ export function Drawer({
   side = 'end',
   size = 'md',
   dismissOnBackdrop = true,
+  hideDefaultHeader = false,
 }: DrawerProps) {
   const drawerWidth = sizeWidths[size];
+  const insets = useSafeAreaInsets();
   const slideAnim = useRef(new Animated.Value(drawerWidth)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
 
@@ -103,9 +110,10 @@ export function Drawer({
     }
   }, [visible, drawerWidth]);
 
-  const translateX = side === 'start'
-    ? Animated.multiply(slideAnim, -1)
-    : slideAnim;
+  // translateX is in physical pixel space — multiply by rtlSign() so the panel
+  // slides in from its logical edge regardless of writing direction.
+  const directionSign = (side === 'start' ? -1 : 1) * rtlSign();
+  const translateX = Animated.multiply(slideAnim, directionSign);
 
   return (
     <RNModal
@@ -136,17 +144,21 @@ export function Drawer({
             shadows.drawer,
             {
               width: drawerWidth,
+              paddingTop: insets.top,
+              paddingBottom: insets.bottom,
               transform: [{ translateX }],
             },
             side === 'start' ? styles.drawerStart : styles.drawerEnd,
           ]}>
           {/* Header */}
-          {title || true ? (
+          {hideDefaultHeader ? null : (
             <View style={styles.header}>
-              {title ? (
+              {typeof title === 'string' ? (
                 <Text variant="subtitle" style={{ flex: 1 }} numberOfLines={1}>
                   {title}
                 </Text>
+              ) : title ? (
+                <View style={{ flex: 1 }}>{title}</View>
               ) : (
                 <View style={{ flex: 1 }} />
               )}
@@ -158,7 +170,7 @@ export function Drawer({
                 <Feather name="x" size={18} color={lightColors.textSecondary} />
               </Pressable>
             </View>
-          ) : null}
+          )}
 
           {/* Body */}
           <View style={styles.body}>{children}</View>

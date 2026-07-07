@@ -71,6 +71,23 @@ export default function BottomTabBarDemo() {
             />
           </View>
         </Section>
+
+        <Section label="With primary action (5-tab layout)">
+          <View style={styles.compactPreview}>
+            <BottomTabBar
+              variant="compact"
+              items={[
+                { key: 'home', label: 'Home', icon: 'home' },
+                { key: 'team', label: 'Team', icon: 'users' },
+                { key: 'add', label: 'Add', icon: 'plus', kind: 'primary' },
+                { key: 'inbox', label: 'Inbox', icon: 'message-square', badge: 2 },
+                { key: 'help', label: 'Help', icon: 'help-circle' },
+              ]}
+              active="home"
+              onChange={() => {}}
+            />
+          </View>
+        </Section>
       </ScrollView>
 
       <BottomTabBar items={ITEMS} active={active} onChange={setActive} />

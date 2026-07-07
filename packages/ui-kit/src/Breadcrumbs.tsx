@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, View, type ViewProps } from 'react-n
 import { lightColors } from './tokens/colors';
 import { spacing } from './tokens/spacing';
 import { Text } from './Text';
+import { forwardChevron } from './utils/rtl';
 
 export interface BreadcrumbItem {
   label: string;
@@ -45,7 +46,7 @@ export function Breadcrumbs({ items, style, ...rest }: BreadcrumbsProps) {
             )}
             {!isLast ? (
               <Feather
-                name="chevron-right"
+                name={forwardChevron()}
                 size={12}
                 color={lightColors.textMuted}
                 style={styles.separator}

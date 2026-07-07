@@ -12,6 +12,7 @@ import { lightColors } from './tokens/colors';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
 import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { isRTL } from './utils/rtl';
 
 export interface InputProps extends TextInputProps {
   label?: string;
@@ -65,6 +66,7 @@ export function Input({
           }}
           style={[
             styles.input,
+            { textAlign: isRTL() ? 'right' : 'left' },
             leftIcon ? styles.inputWithLeftIcon : null,
             rightIcon ? styles.inputWithRightIcon : null,
             !isEditable && styles.inputDisabled,

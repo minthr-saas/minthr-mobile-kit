@@ -189,6 +189,6 @@ const styles = StyleSheet.create({
   },
   fileInfo: {
     flex: 1,
-    marginLeft: spacing[3],
+    marginStart: spacing[3],
   },
 });

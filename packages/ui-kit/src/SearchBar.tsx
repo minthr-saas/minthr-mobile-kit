@@ -22,6 +22,7 @@ import { lightColors } from './tokens/colors';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
 import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { isRTL } from './utils/rtl';
 
 export interface SearchBarProps
   extends Omit<TextInputProps, 'style' | 'placeholderTextColor'> {
@@ -98,7 +99,7 @@ export function SearchBar({
             setFocused(false);
             onBlur?.(e);
           }}
-          style={styles.input}
+          style={[styles.input, { textAlign: isRTL() ? 'right' : 'left' }]}
         />
         {value.length > 0 ? (
           <Pressable

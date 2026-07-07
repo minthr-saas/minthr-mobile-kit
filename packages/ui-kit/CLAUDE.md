@@ -27,7 +27,7 @@ These come from the web kit's design philosophy. Read [the web kit's CLAUDE.md](
 
 1. **No shadows on containers.** `Card`, `Button`, `Input`, `Badge` — use `borders.hair` with `lightColors.border`, never shadows. Shadows are reserved for floating elements only: `Modal`, `BottomSheet`, `Popover`, `Tooltip`, `Toast`.
 
-2. **Logical layout properties.** Use `marginStart` / `marginEnd` / `paddingStart` / `paddingEnd` (RN supports them natively). **Never** `marginLeft` / `marginRight` etc. The kit is RTL-native.
+2. **Logical layout properties.** Use `marginStart` / `marginEnd` / `paddingStart` / `paddingEnd` / `start` / `end` (RN supports them natively). **Never** `marginLeft` / `marginRight` / `left` / `right` etc. The kit is RTL-native. Two things stay physical and need explicit handling — use the helpers in [`src/utils/rtl.ts`](./src/utils/rtl.ts): directional icons (`forwardChevron()` for drill-in / next, `backChevron()` for back / previous) and `transform: [{ translateX }]` animations (multiply by `rtlSign()` so the panel slides in from its logical edge).
 
 3. **Tokens only.** No hardcoded hex (`#2C7955`), no inline color strings, no raw pixel values for spacing/radius. Use `lightColors.*`, `spacing[N]`, `radius.*`. If a token doesn't exist, stop and ask — don't invent one.
 
@@ -70,13 +70,13 @@ Each component lives in its own `.tsx` under `packages/ui-kit/src/`. Demos live 
 | Category | Components |
 |---|---|
 | **Typography** | `Text` |
-| **Actions** | `Button`, `IconButton` |
-| **Forms** | `Input`, `Textarea`, `NumberInput`, `OtpInput`, `PasswordStrength`, `Select`, `Switch`, `Checkbox`, `Radio` (+ `RadioGroup`), `SegmentedControl`, `FormField`, `FilterBar`, `Combobox`, `MultiSelect`, `CurrencyInput`, `PhoneInput`, `DatePicker`, `TimePicker`, `FileUpload` |
+| **Actions** | `Button`, `IconButton`, `FAB` |
+| **Forms** | `Input`, `Textarea`, `NumberInput`, `OtpInput`, `PasswordStrength`, `Select`, `Switch`, `Checkbox`, `Radio` (+ `RadioGroup`), `SegmentedControl`, `FormField`, `FilterBar`, `Combobox`, `MultiSelect`, `CurrencyInput`, `PhoneInput`, `DatePicker`, `TimePicker`, `FileUpload`, `SearchBar`, `Calendar`, `SelectableCard` |
 | **Display** | `Avatar`, `AvatarGroup`, `Badge`, `Tag`, `EmptyState` |
-| **Feedback** | `Alert`, `Callout`, `Skeleton`, `ProgressBar`, `Toast` (`useToast` hook), `SelectionBar` |
-| **Overlays** | `Modal`, `BottomSheet`, `Tooltip`, `ConfirmDialog`, `Drawer` |
-| **Navigation** | `Tabs`, `Stepper`, `PageHeader`, `Breadcrumbs`, `Pagination`, `ProfileHeader` |
-| **Layout** | `Card` (+ `CardHeader` / `CardTitle` / `CardDescription` / `CardFooter`), `Divider`, `Accordion` (+ `AccordionItem`) |
+| **Feedback** | `Alert`, `Banner`, `Callout`, `Skeleton`, `ProgressBar`, `Spinner`, `Toast` (`useToast` hook), `SelectionBar` |
+| **Overlays** | `Modal`, `BottomSheet`, `Tooltip`, `ConfirmDialog`, `Drawer`, `Menu` |
+| **Navigation** | `Tabs`, `Stepper`, `PageHeader`, `Breadcrumbs`, `ProfileHeader`, `BottomTabBar` |
+| **Layout** | `Card` (+ `CardHeader` / `CardTitle` / `CardDescription` / `CardFooter`), `Divider`, `Accordion` (+ `AccordionItem`), `ListItem` (+ `List` / `ListSection`), `SwipeableRow`, `PullToRefresh` |
 
 When adding a new component:
 1. Create `packages/ui-kit/src/<Name>.tsx`

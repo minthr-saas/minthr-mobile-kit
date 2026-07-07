@@ -3,16 +3,23 @@
  * Persistent screen chrome. Use as a custom `tabBar` for
  * @react-navigation/bottom-tabs, or wire up manually with local state.
  *
+ * Items can be marked `kind: 'primary'` to render a brand-filled circular
+ * action (FAB-style) in place of the regular icon — typically the center
+ * "add" affordance in 5-tab layouts.
+ *
  * Usage:
- *   const [active, setActive] = useState<'home' | 'inbox' | 'profile'>('home');
+ *   const [active, setActive] = useState<'home' | 'add' | 'profile'>('home');
  *
  *   <BottomTabBar
+ *     variant="compact"
  *     active={active}
  *     onChange={setActive}
  *     items={[
  *       { key: 'home', label: 'Home', icon: 'home' },
- *       { key: 'inbox', label: 'Inbox', icon: 'inbox', badge: 3 },
- *       { key: 'profile', label: 'Profile', icon: 'user', badge: true },
+ *       { key: 'team', label: 'Team', icon: 'users' },
+ *       { key: 'add', label: 'Add', icon: 'plus', kind: 'primary' },
+ *       { key: 'inbox', label: 'Inbox', icon: 'message-square', badge: 2 },
+ *       { key: 'help', label: 'Help', icon: 'help-circle' },
  *     ]}
  *   />
  */
@@ -29,6 +36,7 @@ import { spacing } from './tokens/spacing';
 import { fontSize, fontWeight } from './tokens/typography';
 
 export type BottomTabBarVariant = 'default' | 'compact';
+export type BottomTabBarItemKind = 'default' | 'primary';
 
 export interface BottomTabBarItem<T extends string = string> {
   key: T;
@@ -37,6 +45,8 @@ export interface BottomTabBarItem<T extends string = string> {
   /** number renders a count badge; true renders a dot; undefined renders nothing. */
   badge?: number | boolean;
   disabled?: boolean;
+  /** 'primary' renders a brand-filled circular action (FAB-style). Defaults to 'default'. */
+  kind?: BottomTabBarItemKind;
 }
 
 export interface BottomTabBarProps<T extends string = string> {
@@ -48,7 +58,9 @@ export interface BottomTabBarProps<T extends string = string> {
 }
 
 const ROW_HEIGHT = 56;
-const ICON_SIZE = 20;
+const ICON_SIZE = 22;
+const PRIMARY_SIZE = 52;
+const PRIMARY_ICON_SIZE = 24;
 
 export function BottomTabBar<T extends string = string>({
   items,
@@ -60,10 +72,7 @@ export function BottomTabBar<T extends string = string>({
 
   return (
     <View
-      style={[
-        styles.container,
-        { paddingBottom: insets.bottom },
-      ]}
+      style={[styles.container, { paddingBottom: insets.bottom }]}
       accessibilityRole="tablist">
       <View style={[styles.row, variant === 'compact' && styles.rowCompact]}>
         {items.map((item) => {
@@ -96,6 +105,7 @@ export function BottomTabBarItemView<T extends string>({
   variant,
   onPress,
 }: BottomTabBarItemViewProps<T>) {
+  const isPrimary = item.kind === 'primary';
   const tint = active ? lightColors.brand : lightColors.textSecondary;
   const hasNumericBadge = typeof item.badge === 'number' && item.badge > 0;
   const hasDotBadge = item.badge === true;
@@ -107,35 +117,61 @@ export function BottomTabBarItemView<T extends string>({
       accessibilityState={{ selected: active, disabled: !!item.disabled }}
       disabled={item.disabled}
       onPress={onPress}
-      android_ripple={{ color: lightColors.surfaceSubtle, borderless: true }}
+      android_ripple={
+        isPrimary
+          ? { color: lightColors.brandStrong, borderless: true }
+          : { color: lightColors.surfaceSubtle, borderless: true }
+      }
       style={({ pressed }) => [
         styles.tab,
-        pressed && styles.tabPressed,
+        pressed && !isPrimary && styles.tabPressed,
         item.disabled && styles.tabDisabled,
       ]}>
-      <View style={styles.iconWrap}>
-        <Feather name={item.icon} size={ICON_SIZE} color={tint} />
-        {hasNumericBadge ? (
-          <View style={styles.badgeCount}>
-            <Text style={styles.badgeCountLabel} numberOfLines={1}>
-              {(item.badge as number) > 99 ? '99+' : String(item.badge)}
-            </Text>
+      {isPrimary ? (
+        <View style={styles.primaryWrap}>
+          <View style={styles.primaryCircle}>
+            <Feather
+              name={item.icon}
+              size={PRIMARY_ICON_SIZE}
+              color={lightColors.onBrand}
+            />
           </View>
-        ) : null}
-        {hasDotBadge ? <View style={styles.badgeDot} /> : null}
-      </View>
-      {variant === 'default' ? (
-        <Text
-          variant="caption"
-          numberOfLines={1}
-          style={[
-            styles.label,
-            { color: tint },
-            active && styles.labelActive,
-          ]}>
-          {item.label}
-        </Text>
-      ) : null}
+          {hasNumericBadge ? (
+            <View style={styles.primaryBadgeCount}>
+              <Text style={styles.badgeCountLabel} numberOfLines={1}>
+                {(item.badge as number) > 99 ? '99+' : String(item.badge)}
+              </Text>
+            </View>
+          ) : null}
+          {hasDotBadge ? <View style={styles.primaryBadgeDot} /> : null}
+        </View>
+      ) : (
+        <>
+          <View style={styles.iconWrap}>
+            <Feather name={item.icon} size={ICON_SIZE} color={tint} />
+            {hasNumericBadge ? (
+              <View style={styles.badgeCount}>
+                <Text style={styles.badgeCountLabel} numberOfLines={1}>
+                  {(item.badge as number) > 99 ? '99+' : String(item.badge)}
+                </Text>
+              </View>
+            ) : null}
+            {hasDotBadge ? <View style={styles.badgeDot} /> : null}
+          </View>
+          {variant === 'default' ? (
+            <Text
+              variant="caption"
+              numberOfLines={1}
+              style={[
+                styles.label,
+                { color: tint },
+                active && styles.labelActive,
+              ]}>
+              {item.label}
+            </Text>
+          ) : null}
+        </>
+      )}
     </Pressable>
   );
 }
@@ -152,7 +188,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   rowCompact: {
-    height: ROW_HEIGHT - spacing[2],
+    height: ROW_HEIGHT + spacing[2],
   },
   tab: {
     flex: 1,
@@ -180,6 +216,20 @@ const styles = StyleSheet.create({
   labelActive: {
     fontWeight: fontWeight.medium,
   },
+  primaryWrap: {
+    width: PRIMARY_SIZE,
+    height: PRIMARY_SIZE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  primaryCircle: {
+    width: PRIMARY_SIZE,
+    height: PRIMARY_SIZE,
+    borderRadius: PRIMARY_SIZE / 2,
+    backgroundColor: lightColors.brand,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   badgeCount: {
     position: 'absolute',
     top: -2,
@@ -206,5 +256,30 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 4,
     backgroundColor: lightColors.danger,
+  },
+  primaryBadgeCount: {
+    position: 'absolute',
+    top: 2,
+    end: 2,
+    minWidth: 18,
+    height: 18,
+    paddingHorizontal: 4,
+    borderRadius: radius.full,
+    backgroundColor: lightColors.danger,
+    borderWidth: 2,
+    borderColor: lightColors.surfacePrimary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  primaryBadgeDot: {
+    position: 'absolute',
+    top: 4,
+    end: 4,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: lightColors.danger,
+    borderWidth: 2,
+    borderColor: lightColors.surfacePrimary,
   },
 });

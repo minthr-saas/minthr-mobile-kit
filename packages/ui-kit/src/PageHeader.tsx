@@ -6,6 +6,7 @@ import { lightColors } from './tokens/colors';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
 import { Text } from './Text';
+import { backChevron } from './utils/rtl';
 
 export interface PageHeaderProps extends ViewProps {
   title: string;
@@ -39,7 +40,7 @@ export function PageHeader({
             styles.backButton,
             pressed && styles.backButtonPressed,
           ]}>
-          <Feather name="chevron-left" size={24} color={lightColors.textPrimary} />
+          <Feather name={backChevron()} size={24} color={lightColors.textPrimary} />
         </Pressable>
       ) : null}
 
