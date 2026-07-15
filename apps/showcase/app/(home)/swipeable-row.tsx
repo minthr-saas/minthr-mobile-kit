@@ -30,6 +30,15 @@ const SEED: Person[] = [
 ];
 
 export default function SwipeableRowDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'SwipeableRow' }} />
+      <SwipeableRowBody />
+    </ScrollView>
+  );
+}
+
+export function SwipeableRowBody() {
   const toast = useToast();
   const [people, setPeople] = useState<Person[]>(SEED);
 
@@ -47,9 +56,7 @@ export default function SwipeableRowDemo() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'SwipeableRow' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Swipe each row left to delete, right to pin. Uses react-native-gesture-handler. There
         is no real web equivalent — touchscreens make this gesture natural.
@@ -111,7 +118,7 @@ export default function SwipeableRowDemo() {
           </Card>
         </SwipeableRow>
       </Section>
-    </ScrollView>
+    </>
   );
 }
 

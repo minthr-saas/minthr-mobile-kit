@@ -7,14 +7,21 @@ import { Button, Drawer, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function DrawerDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Drawer' }} />
+      <DrawerBody />
+    </ScrollView>
+  );
+}
+
+export function DrawerBody() {
   const [endOpen, setEndOpen] = useState(false);
   const [startOpen, setStartOpen] = useState(false);
   const [footerOpen, setFooterOpen] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Drawer' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Side-sliding panel for detail views, settings, or form sidebars. Slides from
         the start (left in LTR) or end (right in LTR) edge with a spring animation.
@@ -85,6 +92,6 @@ export default function DrawerDemo() {
           edit panels that need explicit save / cancel actions.
         </Text>
       </Drawer>
-    </ScrollView>
+    </>
   );
 }

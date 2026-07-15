@@ -349,13 +349,6 @@ export const kitComponents: readonly KitComponentEntry[] = [
     description: 'Document/image picker with dashed dropzone and file list preview.',
   },
   {
-    name: 'FAB',
-    path: '/fab',
-    category: 'Actions',
-    status: 'ready',
-    description: 'Floating Action Button — primary action anchored above the screen. Regular / mini / extended variants.',
-  },
-  {
     name: 'SearchBar',
     path: '/search-bar',
     category: 'Forms',

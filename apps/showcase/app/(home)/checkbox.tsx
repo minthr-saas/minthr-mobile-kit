@@ -7,6 +7,15 @@ import { Checkbox, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function CheckboxDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Checkbox' }} />
+      <CheckboxBody />
+    </ScrollView>
+  );
+}
+
+export function CheckboxBody() {
   const [a, setA] = useState(false);
   const [b, setB] = useState(true);
 
@@ -20,9 +29,7 @@ export default function CheckboxDemo() {
       : 'indeterminate';
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Checkbox' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Square selector — checked, unchecked, or indeterminate. Tap area covers the label.
       </Text>
@@ -74,6 +81,6 @@ export default function CheckboxDemo() {
           </View>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

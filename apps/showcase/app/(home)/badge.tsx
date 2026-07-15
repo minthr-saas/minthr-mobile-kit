@@ -9,7 +9,14 @@ export default function BadgeDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Badge' }} />
+      <BadgeBody />
+    </ScrollView>
+  );
+}
 
+export function BadgeBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Small status pill. Six semantic variants — never use the danger variant for non-error
         information.
@@ -60,6 +67,6 @@ export default function BadgeDemo() {
           </View>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

@@ -5,12 +5,19 @@ import { Stack } from 'expo-router';
 import { DatePicker, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 
 export default function DatePickerScreen() {
-  const [date, setDate] = useState<Date | null>(new Date());
-
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Stack.Screen options={{ title: 'DatePicker' }} />
+      <DatePickerBody />
+    </ScrollView>
+  );
+}
 
+export function DatePickerBody() {
+  const [date, setDate] = useState<Date | null>(new Date());
+
+  return (
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Basic DatePicker</Text>
         <Text variant="body" tone="secondary">
@@ -51,7 +58,7 @@ export default function DatePickerScreen() {
           value={null}
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

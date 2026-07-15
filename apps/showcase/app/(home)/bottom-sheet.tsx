@@ -63,6 +63,15 @@ function LayoutPickerBody({
 // ─── Demo ─────────────────────────────────────────────────────────────────────
 
 export default function BottomSheetDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'BottomSheet' }} />
+      <BottomSheetBody />
+    </ScrollView>
+  );
+}
+
+export function BottomSheetBody() {
   const sheet = useSheet();
   const [layout, setLayout] = useState('list');
 
@@ -78,9 +87,7 @@ export default function BottomSheetDemo() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'BottomSheet' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Slide-up sheet anchored to the bottom edge. Idiomatic on mobile for action menus, filter
         panels, and pickers — anywhere the user needs context above to remain visible. Sheets are
@@ -97,6 +104,6 @@ export default function BottomSheetDemo() {
           Currently: {layout}
         </Text>
       </Section>
-    </ScrollView>
+    </>
   );
 }

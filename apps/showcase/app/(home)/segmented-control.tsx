@@ -7,14 +7,21 @@ import { SegmentedControl, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function SegmentedControlDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'SegmentedControl' }} />
+      <SegmentedControlBody />
+    </ScrollView>
+  );
+}
+
+export function SegmentedControlBody() {
   const [period, setPeriod] = useState<'day' | 'week' | 'month'>('week');
   const [view, setView] = useState<'list' | 'grid'>('list');
   const [tab, setTab] = useState<'all' | 'mine' | 'archived'>('all');
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'SegmentedControl' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Pick-one selector with a pill-style track. Up to ~4 short labels — beyond that, prefer
         Tabs or a Select.
@@ -59,6 +66,6 @@ export default function SegmentedControlDemo() {
           disabled
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

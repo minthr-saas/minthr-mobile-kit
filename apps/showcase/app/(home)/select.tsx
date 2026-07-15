@@ -24,13 +24,20 @@ const tz = [
 ];
 
 export default function SelectDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Select' }} />
+      <SelectBody />
+    </ScrollView>
+  );
+}
+
+export function SelectBody() {
   const [dept, setDept] = useState<string | null>(null);
   const [tzValue, setTzValue] = useState<string | null>('casablanca');
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Select' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Tap to open a BottomSheet of options — idiomatic on mobile, far more accessible than a
         native picker for descriptive labels.
@@ -80,6 +87,6 @@ export default function SelectDemo() {
           disabled
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

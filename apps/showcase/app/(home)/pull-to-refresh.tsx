@@ -22,6 +22,15 @@ function fakeLoad(): Promise<string[]> {
 }
 
 export default function PullToRefreshDemo() {
+  return (
+    <>
+      <Stack.Screen options={{ title: 'PullToRefresh' }} />
+      <PullToRefreshBody />
+    </>
+  );
+}
+
+export function PullToRefreshBody() {
   const [refreshing, setRefreshing] = useState(false);
   const [items, setItems] = useState<string[]>([
     'Sara Boudia · checked in',
@@ -42,8 +51,6 @@ export default function PullToRefreshDemo() {
       refreshing={refreshing}
       onRefresh={onRefresh}
       contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'PullToRefresh' }} />
-
       <Text variant="body" tone="secondary">
         Pull down to refresh. Wraps a ScrollView with a kit-tinted RefreshControl. For FlatList
         consumers, use the exported KitRefreshControl directly.

@@ -15,14 +15,21 @@ import {
 import { Section } from './_components/Section';
 
 export default function FormFieldDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'FormField' }} />
+      <FormFieldBody />
+    </ScrollView>
+  );
+}
+
+export function FormFieldBody() {
   const [notifications, setNotifications] = useState(true);
   const [contract, setContract] = useState('full-time');
   const [visibility, setVisibility] = useState<'public' | 'team' | 'private'>('team');
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'FormField' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Label + helper/error wrapper for non-text controls. Use it to give Switch, Checkbox,
         Radio, SegmentedControl, etc. the same field layout as Input / Textarea.
@@ -59,6 +66,6 @@ export default function FormFieldDemo() {
           </RadioGroup>
         </FormField>
       </Section>
-    </ScrollView>
+    </>
   );
 }

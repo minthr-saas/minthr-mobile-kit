@@ -14,15 +14,22 @@ import {
 import { Section } from './_components/Section';
 
 export default function PasswordStrengthDemo() {
-  const [pwd, setPwd] = useState('');
-  const [shown, setShown] = useState(false);
-
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'PasswordStrength' }} />
+      <PasswordStrengthBody />
+    </ScrollView>
+  );
+}
 
+export function PasswordStrengthBody() {
+  const [pwd, setPwd] = useState('');
+  const [shown, setShown] = useState(false);
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Client-side strength hint — pair with server-side validation. Heuristic only: length,
         case mix, digits, special characters.
@@ -83,6 +90,6 @@ export default function PasswordStrengthDemo() {
           </View>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

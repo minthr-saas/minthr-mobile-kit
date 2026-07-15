@@ -16,6 +16,15 @@ import {
 import { Section } from './_components/Section';
 
 export default function MenuDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Menu' }} />
+      <MenuBody />
+    </ScrollView>
+  );
+}
+
+export function MenuBody() {
   const toast = useToast();
 
   const rowAnchor = useRef<View>(null);
@@ -27,9 +36,7 @@ export default function MenuDemo() {
   const [inlineOpen, setInlineOpen] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Menu' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Anchored popover with an action list. Replaces desktop dropdown-menu
         patterns on mobile. Auto-flips above the anchor when too close to the
@@ -105,7 +112,7 @@ export default function MenuDemo() {
           ]}
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }
 

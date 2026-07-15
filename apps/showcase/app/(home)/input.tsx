@@ -8,6 +8,17 @@ import { Input, Text, lightColors, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function InputDemo() {
+  return (
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Input' }} />
+      <InputBody />
+    </ScrollView>
+  );
+}
+
+export function InputBody() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [search, setSearch] = useState('');
@@ -15,11 +26,7 @@ export default function InputDemo() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <ScrollView
-      keyboardShouldPersistTaps="handled"
-      contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Input' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Single-line text field. Optional label, hint, error, and `leftIcon` / `rightIcon` slots.
         Border switches to brand on focus.
@@ -102,6 +109,6 @@ export default function InputDemo() {
           <Input label="Department" value="Operations" editable={false} />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

@@ -15,13 +15,20 @@ const OPTIONS = [
 ];
 
 export default function MultiSelectScreen() {
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Stack.Screen options={{ title: 'MultiSelect' }} />
+      <MultiSelectBody />
+    </ScrollView>
+  );
+}
+
+export function MultiSelectBody() {
   const [values, setValues] = useState<string[]>([]);
   const [limitedValues, setLimitedValues] = useState<string[]>([]);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Stack.Screen options={{ title: 'MultiSelect' }} />
-
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Basic MultiSelect</Text>
         <Text variant="body" tone="secondary">
@@ -79,7 +86,7 @@ export default function MultiSelectScreen() {
           error="Selection required"
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

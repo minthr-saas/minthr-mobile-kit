@@ -13,13 +13,20 @@ import {
 import { Section } from './_components/Section';
 
 export default function BannerDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Banner' }} />
+      <BannerBody />
+    </ScrollView>
+  );
+}
+
+export function BannerBody() {
   const toast = useToast();
   const [dismissed, setDismissed] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Banner' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Persistent app-level status strip. Full-width, no radius — sits flush
         beneath your top app bar. Different from Toast (ephemeral) and Alert
@@ -84,7 +91,7 @@ export default function BannerDemo() {
           </View>
         )}
       </Section>
-    </ScrollView>
+    </>
   );
 }
 

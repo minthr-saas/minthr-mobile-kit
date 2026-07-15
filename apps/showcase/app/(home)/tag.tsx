@@ -7,12 +7,19 @@ import { Tag, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function TagDemo() {
-  const [tags, setTags] = useState(['Engineering', 'Remote', 'Senior', 'Full-time']);
-
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Tag' }} />
+      <TagBody />
+    </ScrollView>
+  );
+}
 
+export function TagBody() {
+  const [tags, setTags] = useState(['Engineering', 'Remote', 'Senior', 'Full-time']);
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Pill-shaped chip for user-applied labels. Optionally removable. Use Badge for system
         states; Tag for taxonomies and filters.
@@ -46,6 +53,6 @@ export default function TagDemo() {
           ) : null}
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

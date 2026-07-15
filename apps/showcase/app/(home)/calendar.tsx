@@ -12,6 +12,15 @@ import {
 import { Section } from './_components/Section';
 
 export default function CalendarDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Calendar' }} />
+      <CalendarBody />
+    </ScrollView>
+  );
+}
+
+export function CalendarBody() {
   const [single, setSingle] = useState<Date | null>(null);
   const [range, setRange] = useState<CalendarRange>({ start: null, end: null });
   const [multi, setMulti] = useState<readonly Date[]>([]);
@@ -30,9 +39,7 @@ export default function CalendarDemo() {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Calendar' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Inline month-view date picker — single, range, or multi selection.
         Use for scheduling, leave requests, and time-off bookings.
@@ -65,6 +72,6 @@ export default function CalendarDemo() {
           disabledDates={blockedWeekends}
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

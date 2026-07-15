@@ -7,15 +7,22 @@ import { Tabs, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function TabsDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Tabs' }} />
+      <TabsBody />
+    </ScrollView>
+  );
+}
+
+export function TabsBody() {
   const [tab, setTab] = useState<'overview' | 'reviews' | 'compensation' | 'documents'>(
     'overview',
   );
   const [filter, setFilter] = useState<'all' | 'mine' | 'archived'>('all');
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Tabs' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Underline-style tabs for in-page sub-navigation. Different from the bottom tab bar — use
         these inside a screen to switch between related views.
@@ -51,6 +58,6 @@ export default function TabsDemo() {
           onChange={setFilter}
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

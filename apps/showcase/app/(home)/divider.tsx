@@ -9,7 +9,14 @@ export default function DividerDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Divider' }} />
+      <DividerBody />
+    </ScrollView>
+  );
+}
 
+export function DividerBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Hair-line separator. Horizontal, vertical, or labelled. Optional spacing presets apply
         equal margins on both sides of the line.
@@ -48,6 +55,6 @@ export default function DividerDemo() {
           <Text variant="body">87 active</Text>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

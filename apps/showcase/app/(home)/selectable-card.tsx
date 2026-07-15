@@ -12,6 +12,15 @@ import {
 import { Section } from './_components/Section';
 
 export default function SelectableCardDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'SelectableCard' }} />
+      <SelectableCardBody />
+    </ScrollView>
+  );
+}
+
+export function SelectableCardBody() {
   const [plan, setPlan] = useState<'starter' | 'pro' | 'team'>('pro');
   const [perks, setPerks] = useState<Set<string>>(new Set(['notifications']));
 
@@ -25,9 +34,7 @@ export default function SelectableCardDemo() {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'SelectableCard' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Card-shaped selectable option with a radio or checkbox indicator. The
         whole card surface is the tap target — use for plan pickers, payment
@@ -122,6 +129,6 @@ export default function SelectableCardDemo() {
           </Text>
         </SelectableCard>
       </Section>
-    </ScrollView>
+    </>
   );
 }

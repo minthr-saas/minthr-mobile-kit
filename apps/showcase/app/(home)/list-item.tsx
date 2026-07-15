@@ -16,13 +16,20 @@ import {
 import { Section } from './_components/Section';
 
 export default function ListItemDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'ListItem' }} />
+      <ListItemBody />
+    </ScrollView>
+  );
+}
+
+export function ListItemBody() {
   const [notifications, setNotifications] = useState(true);
   const [biometric, setBiometric] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'ListItem' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Mobile-staple row primitive. Compose into a List for hair-line separators
         between rows; group with ListSection for headers + footer captions.
@@ -78,6 +85,6 @@ export default function ListItemDemo() {
           <ListItem title="Delete account" destructive onPress={() => {}} />
         </List>
       </Section>
-    </ScrollView>
+    </>
   );
 }

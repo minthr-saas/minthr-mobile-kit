@@ -9,7 +9,14 @@ export default function EmptyStateDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'EmptyState' }} />
+      <EmptyStateBody />
+    </ScrollView>
+  );
+}
 
+export function EmptyStateBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Centered icon + title + description with an optional action. Use it where a list, page, or
         section has no content to display.
@@ -61,6 +68,6 @@ export default function EmptyStateDemo() {
           </Card>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

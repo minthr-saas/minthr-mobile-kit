@@ -7,17 +7,24 @@ import { Button, OtpInput, Text, useToast, spacing } from '@minthr-saas/mobile-u
 import { Section } from './_components/Section';
 
 export default function OtpInputDemo() {
+  return (
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'OtpInput' }} />
+      <OtpInputBody />
+    </ScrollView>
+  );
+}
+
+export function OtpInputBody() {
   const [code, setCode] = useState('');
   const [shortCode, setShortCode] = useState('');
   const [errorCode, setErrorCode] = useState('123');
   const toast = useToast();
 
   return (
-    <ScrollView
-      keyboardShouldPersistTaps="handled"
-      contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'OtpInput' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Verification code entry. On iOS, the keyboard auto-fill picks up SMS codes via
         textContentType=&quot;oneTimeCode&quot; — no extra wiring required.
@@ -51,6 +58,6 @@ export default function OtpInputDemo() {
           />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

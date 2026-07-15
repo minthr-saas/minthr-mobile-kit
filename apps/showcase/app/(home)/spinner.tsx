@@ -14,7 +14,14 @@ export default function SpinnerDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Spinner' }} />
+      <SpinnerBody />
+    </ScrollView>
+  );
+}
 
+export function SpinnerBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Circular loading indicator. For inline loading states; for determinate /
         linear progress, reach for ProgressBar instead.
@@ -44,7 +51,7 @@ export default function SpinnerDemo() {
           <Spinner size="lg" label="Syncing" />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }
 

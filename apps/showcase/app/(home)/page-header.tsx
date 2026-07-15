@@ -9,7 +9,14 @@ export default function PageHeaderDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'PageHeader' }} />
+      <PageHeaderBody />
+    </ScrollView>
+  );
+}
 
+export function PageHeaderBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Screen-top template, stacked for mobile. Back chevron sits on top (44x44 tap target),
         title + subtitle below get the full width, and actions render on their own row underneath.
@@ -55,6 +62,6 @@ export default function PageHeaderDemo() {
           />
         </Card>
       </Section>
-    </ScrollView>
+    </>
   );
 }

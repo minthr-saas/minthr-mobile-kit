@@ -9,7 +9,14 @@ export default function SkeletonDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Skeleton' }} />
+      <SkeletonBody />
+    </ScrollView>
+  );
+}
 
+export function SkeletonBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Animated placeholder while content loads. Match the rough shape of the final UI — same
         widths, same heights — so layout does not jump on hydration.
@@ -44,6 +51,6 @@ export default function SkeletonDemo() {
           </View>
         </Card>
       </Section>
-    </ScrollView>
+    </>
   );
 }

@@ -7,13 +7,20 @@ import { Button, Modal, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function ModalDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Modal' }} />
+      <ModalBody />
+    </ScrollView>
+  );
+}
+
+export function ModalBody() {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Modal' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Centered overlay with a backdrop. Use sparingly — for confirmations, focused tasks, or
         destructive actions. For browsing/picking flows, prefer BottomSheet.
@@ -56,6 +63,6 @@ export default function ModalDemo() {
           As always, file feedback in #design-system on Slack.
         </Text>
       </Modal>
-    </ScrollView>
+    </>
   );
 }

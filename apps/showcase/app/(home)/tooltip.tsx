@@ -9,7 +9,14 @@ export default function TooltipDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Tooltip' }} />
+      <TooltipBody />
+    </ScrollView>
+  );
+}
 
+export function TooltipBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Long-press the trigger to open a tooltip. Tap anywhere to dismiss. Hover does not exist on
         touch devices, so we use long-press as the canonical disclosure gesture.
@@ -43,6 +50,6 @@ export default function TooltipDemo() {
           </Tooltip>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

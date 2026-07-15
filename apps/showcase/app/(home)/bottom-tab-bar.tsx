@@ -30,11 +30,19 @@ const COPY: Record<TabKey, { title: string; body: string }> = {
 };
 
 export default function BottomTabBarDemo() {
+  return (
+    <>
+      <Stack.Screen options={{ title: 'BottomTabBar' }} />
+      <BottomTabBarBody />
+    </>
+  );
+}
+
+export function BottomTabBarBody() {
   const [active, setActive] = useState<TabKey>('home');
 
   return (
     <View style={styles.root}>
-      <Stack.Screen options={{ title: 'BottomTabBar' }} />
 
       <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
         <Text variant="body" tone="secondary">

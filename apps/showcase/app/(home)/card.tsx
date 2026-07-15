@@ -19,7 +19,14 @@ export default function CardDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Card' }} />
+      <CardBody />
+    </ScrollView>
+  );
+}
 
+export function CardBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Hair-bordered surface container. Padding presets: none / sm / md / lg. Composes with the
         `CardHeader`, `CardTitle`, `CardDescription`, and `CardFooter` subcomponents.
@@ -84,6 +91,6 @@ export default function CardDemo() {
           </View>
         </Card>
       </Section>
-    </ScrollView>
+    </>
   );
 }

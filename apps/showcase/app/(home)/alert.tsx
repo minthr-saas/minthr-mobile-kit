@@ -7,12 +7,19 @@ import { Alert, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function AlertDemo() {
-  const [showDismissable, setShowDismissable] = useState(true);
-
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Alert' }} />
+      <AlertBody />
+    </ScrollView>
+  );
+}
 
+export function AlertBody() {
+  const [showDismissable, setShowDismissable] = useState(true);
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Tinted banner with icon + title + description. Use sparingly — never stack two alerts of
         the same severity.
@@ -57,6 +64,6 @@ export default function AlertDemo() {
           </Text>
         )}
       </Section>
-    </ScrollView>
+    </>
   );
 }

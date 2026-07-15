@@ -18,6 +18,17 @@ const PEOPLE = [
 ];
 
 export default function SearchBarDemo() {
+  return (
+    <ScrollView
+      contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}
+      keyboardShouldPersistTaps="handled">
+      <Stack.Screen options={{ title: 'SearchBar' }} />
+      <SearchBarBody />
+    </ScrollView>
+  );
+}
+
+export function SearchBarBody() {
   const [plain, setPlain] = useState('');
   const [withCancel, setWithCancel] = useState('');
 
@@ -30,11 +41,7 @@ export default function SearchBarDemo() {
   );
 
   return (
-    <ScrollView
-      contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}
-      keyboardShouldPersistTaps="handled">
-      <Stack.Screen options={{ title: 'SearchBar' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Mobile-style search input. Magnifier glyph leads, an × clears the field when text is
         present. With <Text variant="body" tone="primary">showCancel</Text>, a Cancel button
@@ -72,6 +79,6 @@ export default function SearchBarDemo() {
       <Section label="Disabled">
         <SearchBar value="" onChangeText={() => {}} placeholder="Locked" disabled />
       </Section>
-    </ScrollView>
+    </>
   );
 }

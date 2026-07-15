@@ -7,15 +7,22 @@ import { Text, Textarea, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function TextareaDemo() {
-  const [bio, setBio] = useState('');
-  const [feedback, setFeedback] = useState('');
-
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Textarea' }} />
+      <TextareaBody />
+    </ScrollView>
+  );
+}
 
+export function TextareaBody() {
+  const [bio, setBio] = useState('');
+  const [feedback, setFeedback] = useState('');
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Multi-line text input. Same label / hint / error contract as Input. Pass `rows` to
         configure minimum visible height.
@@ -46,6 +53,6 @@ export default function TextareaDemo() {
           rows={5}
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

@@ -9,7 +9,14 @@ export default function AccordionDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Accordion' }} />
+      <AccordionBody />
+    </ScrollView>
+  );
+}
 
+export function AccordionBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Collapsible sections grouped in a single hair-bordered surface. By default only one item is
         expanded at a time — pass `multiple` to allow many.
@@ -59,6 +66,6 @@ export default function AccordionDemo() {
           </AccordionItem>
         </Accordion>
       </Section>
-    </ScrollView>
+    </>
   );
 }

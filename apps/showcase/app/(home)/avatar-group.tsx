@@ -20,7 +20,14 @@ export default function AvatarGroupDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'AvatarGroup' }} />
+      <AvatarGroupBody />
+    </ScrollView>
+  );
+}
 
+export function AvatarGroupBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Overlapping avatars with an optional overflow count. White hair-line halo separates each
         avatar so they read clearly against any background.
@@ -46,6 +53,6 @@ export default function AvatarGroupDemo() {
           <AvatarGroup items={team} max={3} size="xl" />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

@@ -7,6 +7,15 @@ import { ProgressBar, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function ProgressBarDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'ProgressBar' }} />
+      <ProgressBarBody />
+    </ScrollView>
+  );
+}
+
+export function ProgressBarBody() {
   const [v, setV] = useState(0);
 
   useEffect(() => {
@@ -17,9 +26,7 @@ export default function ProgressBarDemo() {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'ProgressBar' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Linear value indicator (0–1). Use semantic variants to convey state — green for completion,
         amber for warnings, red for failures.
@@ -57,7 +64,7 @@ export default function ProgressBarDemo() {
           <ProgressBar value={v} />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }
 

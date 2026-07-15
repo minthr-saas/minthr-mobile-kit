@@ -18,7 +18,14 @@ export default function ProfileHeaderDemo() {
   return (
     <ScrollView contentContainerStyle={{ gap: spacing[5], paddingBottom: spacing[10] }}>
       <Stack.Screen options={{ title: 'ProfileHeader' }} />
+      <ProfileHeaderBody />
+    </ScrollView>
+  );
+}
 
+export function ProfileHeaderBody() {
+  return (
+    <>
       <View style={{ padding: spacing[5], paddingBottom: 0 }}>
         <Text variant="body" tone="secondary">
           Centered contact-card hero. Avatar sits above a centered identity stack (name, status,
@@ -84,6 +91,6 @@ export default function ProfileHeaderDemo() {
           />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

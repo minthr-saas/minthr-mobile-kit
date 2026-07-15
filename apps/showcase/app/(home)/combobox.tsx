@@ -15,13 +15,20 @@ const OPTIONS = [
 ];
 
 export default function ComboboxScreen() {
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Stack.Screen options={{ title: 'Combobox' }} />
+      <ComboboxBody />
+    </ScrollView>
+  );
+}
+
+export function ComboboxBody() {
   const [value, setValue] = useState<string>();
   const [createdValue, setCreatedValue] = useState<string>();
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Stack.Screen options={{ title: 'Combobox' }} />
-
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Basic Combobox</Text>
         <Text variant="body" tone="secondary">
@@ -72,7 +79,7 @@ export default function ComboboxScreen() {
           error="This field is required"
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

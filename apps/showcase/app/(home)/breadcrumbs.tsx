@@ -9,7 +9,14 @@ export default function BreadcrumbsDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Breadcrumbs' }} />
+      <BreadcrumbsBody />
+    </ScrollView>
+  );
+}
 
+export function BreadcrumbsBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Horizontally scrollable nav trail with chevron separators. The last item is the current
         page (medium weight, no press handler).
@@ -46,6 +53,6 @@ export default function BreadcrumbsDemo() {
           ]}
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

@@ -9,7 +9,14 @@ export default function IconButtonDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'IconButton' }} />
+      <IconButtonBody />
+    </ScrollView>
+  );
+}
 
+export function IconButtonBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Icon-only pressable. Must always carry an `accessibilityLabel` describing the action — the
         icon alone is not enough for screen readers.
@@ -54,6 +61,6 @@ export default function IconButtonDemo() {
           <IconButton icon="trash-2" accessibilityLabel="Delete" variant="danger" disabled />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

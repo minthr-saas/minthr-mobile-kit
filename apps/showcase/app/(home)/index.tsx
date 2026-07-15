@@ -12,8 +12,6 @@ import {
 } from 'react-native';
 
 import {
-  List,
-  ListItem,
   SearchBar,
   Text,
   borders,
@@ -26,6 +24,9 @@ import {
   kitCategories,
   kitComponents,
 } from '@minthr-saas/mobile-ui-kit';
+
+import { ComponentShowcase } from './_components/ComponentShowcase';
+import { demoRegistry } from './_components/demoRegistry';
 
 const ALL_CATEGORY = 'All' as const;
 type FilterCategory = typeof ALL_CATEGORY | ComponentCategory;
@@ -83,38 +84,9 @@ export default function KitIndex() {
           </Text>
         </View>
         <Text variant="body" tone="secondary">
-          Sister to the web @minthr-saas/ui-kit. Tap any component to open its
-          dedicated demo screen.
+          Sister to the web @minthr-saas/ui-kit. Every component is live below —
+          grouped by category. Tap Open on any card for its full-screen demo.
         </Text>
-      </View>
-
-      {/* Featured example */}
-      <View style={styles.featuredWrap}>
-        <Pressable
-          accessibilityRole="link"
-          onPress={() => router.push('/dashboard' as never)}
-          android_ripple={{ color: lightColors.brandSubtle, borderless: false }}
-          style={({ pressed }) => [
-            styles.featured,
-            pressed && styles.featuredPressed,
-          ]}>
-          <View style={styles.featuredIcon}>
-            <Feather name="layout" size={18} color={lightColors.onBrand} />
-          </View>
-          <View style={styles.featuredText}>
-            <Text variant="body" style={styles.featuredTitle}>
-              Dashboard example
-            </Text>
-            <Text variant="caption" tone="secondary">
-              See the kit composed into a full HR app screen
-            </Text>
-          </View>
-          <Feather
-            name="chevron-right"
-            size={18}
-            color={lightColors.textMuted}
-          />
-        </Pressable>
       </View>
 
       {/* Search */}
@@ -142,7 +114,7 @@ export default function KitIndex() {
         ))}
       </ScrollView>
 
-      {/* Results */}
+      {/* Results — live demos grouped by category */}
       {grouped.length === 0 ? (
         <View style={styles.empty}>
           <Feather name="search" size={24} color={lightColors.textMuted} />
@@ -154,23 +126,28 @@ export default function KitIndex() {
         grouped.map(({ category: cat, items }) => (
           <View key={cat} style={styles.categoryBlock}>
             <View style={styles.categoryHead}>
-              <Text variant="caption" tone="muted" style={styles.categoryLabel}>
+              <Text variant="caption" tone="brand" style={styles.categoryLabel}>
                 {cat}
               </Text>
               <Text variant="caption" tone="muted">
                 {items.length}
               </Text>
             </View>
-            <List bordered>
-              {items.map((item) => (
-                <ListItem
-                  key={item.path}
-                  title={item.name}
-                  subtitle={item.description}
-                  onPress={() => handlePress(item.path)}
-                />
-              ))}
-            </List>
+            {items.map((item, idx) => {
+              const entry = demoRegistry[item.path];
+              if (!entry) return null;
+              return (
+                <View key={item.path}>
+                  {idx > 0 ? <View style={styles.separator} /> : null}
+                  <ComponentShowcase
+                    name={item.name}
+                    Body={entry.Body}
+                    framed={entry.framed}
+                    onOpen={() => handlePress(item.path)}
+                  />
+                </View>
+              );
+            })}
           </View>
         ))
       )}
@@ -247,7 +224,8 @@ function CategoryChip({
 const styles = StyleSheet.create({
   scroll: {
     paddingVertical: spacing[5],
-    gap: spacing[5],
+    gap: spacing[6],
+    paddingBottom: spacing[16],
   },
   hero: {
     paddingHorizontal: spacing[5],
@@ -285,7 +263,7 @@ const styles = StyleSheet.create({
     gap: spacing[2],
   },
   categoryBlock: {
-    gap: spacing[2],
+    gap: spacing[5],
     paddingHorizontal: spacing[5],
   },
   categoryHead: {
@@ -293,47 +271,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: spacing[1],
+    paddingBottom: spacing[1],
+    borderBottomWidth: borders.hair,
+    borderBottomColor: lightColors.border,
   },
   categoryLabel: {
     fontWeight: fontWeight.medium,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  separator: {
+    height: borders.hair,
+    backgroundColor: lightColors.border,
+    marginBottom: spacing[5],
   },
   empty: {
     paddingHorizontal: spacing[5],
     paddingVertical: spacing[10],
     alignItems: 'center',
     gap: spacing[2],
-  },
-  featuredWrap: {
-    paddingHorizontal: spacing[5],
-  },
-  featured: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing[3],
-    padding: spacing[3],
-    backgroundColor: lightColors.brandSubtle,
-    borderRadius: radius.lg,
-    borderWidth: borders.hair,
-    borderColor: lightColors.brand,
-  },
-  featuredPressed: {
-    backgroundColor: palette.brand[100],
-  },
-  featuredIcon: {
-    width: 36,
-    height: 36,
-    borderRadius: radius.md,
-    backgroundColor: lightColors.brand,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  featuredText: {
-    flex: 1,
-    gap: 2,
-    minWidth: 0,
-  },
-  featuredTitle: {
-    fontWeight: fontWeight.medium,
   },
 });
 

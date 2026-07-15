@@ -7,15 +7,22 @@ import { Divider, Switch, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function SwitchDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Switch' }} />
+      <SwitchBody />
+    </ScrollView>
+  );
+}
+
+export function SwitchBody() {
   const [a, setA] = useState(true);
   const [b, setB] = useState(false);
   const [c, setC] = useState(true);
   const [d, setD] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Switch' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Brand-tinted toggle. Standalone or wrapped with a label and description for settings rows.
       </Text>
@@ -52,6 +59,6 @@ export default function SwitchDemo() {
           disabled
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

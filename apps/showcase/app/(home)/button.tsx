@@ -9,7 +9,14 @@ export default function ButtonDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Button' }} />
+      <ButtonBody />
+    </ScrollView>
+  );
+}
 
+export function ButtonBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Pressable action. 6 variants × 3 sizes, with disabled and full-width states.
       </Text>
@@ -40,6 +47,6 @@ export default function ButtonDemo() {
           <Button label="Full width" fullWidth onPress={() => {}} />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

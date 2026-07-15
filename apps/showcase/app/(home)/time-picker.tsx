@@ -5,12 +5,19 @@ import { Stack } from 'expo-router';
 import { TimePicker, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 
 export default function TimePickerScreen() {
-  const [time, setTime] = useState<Date | null>(new Date());
-
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Stack.Screen options={{ title: 'TimePicker' }} />
+      <TimePickerBody />
+    </ScrollView>
+  );
+}
 
+export function TimePickerBody() {
+  const [time, setTime] = useState<Date | null>(new Date());
+
+  return (
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Basic TimePicker</Text>
         <Text variant="body" tone="secondary">
@@ -42,7 +49,7 @@ export default function TimePickerScreen() {
           onChange={setTime}
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

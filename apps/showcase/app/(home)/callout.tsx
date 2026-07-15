@@ -9,7 +9,14 @@ export default function CalloutDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Callout' }} />
+      <CalloutBody />
+    </ScrollView>
+  );
+}
 
+export function CalloutBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Inline accent-bordered panel. Quieter than Alert — use it for tips, side-notes, or
         prerequisite info embedded inside content.
@@ -53,6 +60,6 @@ export default function CalloutDemo() {
       <Section label="Title only">
         <Callout accent="brand" title="Pin this card to come back to it later." />
       </Section>
-    </ScrollView>
+    </>
   );
 }

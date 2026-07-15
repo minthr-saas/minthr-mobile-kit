@@ -6,13 +6,20 @@ import * as DocumentPicker from 'expo-document-picker';
 import { FileUpload, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 
 export default function FileUploadScreen() {
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Stack.Screen options={{ title: 'FileUpload' }} />
+      <FileUploadBody />
+    </ScrollView>
+  );
+}
+
+export function FileUploadBody() {
   const [files, setFiles] = useState<DocumentPicker.DocumentPickerAsset[]>([]);
   const [singleFile, setSingleFile] = useState<DocumentPicker.DocumentPickerAsset[]>([]);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Stack.Screen options={{ title: 'FileUpload' }} />
-
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Single File Upload</Text>
         <Text variant="body" tone="secondary">
@@ -51,7 +58,7 @@ export default function FileUploadScreen() {
           error="File size too large"
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

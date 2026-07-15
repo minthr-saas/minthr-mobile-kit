@@ -12,6 +12,15 @@ interface AppliedFilter {
 }
 
 export default function FilterBarDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'FilterBar' }} />
+      <FilterBarBody />
+    </ScrollView>
+  );
+}
+
+export function FilterBarBody() {
   const [filters, setFilters] = useState<AppliedFilter[]>([
     { key: 'dept', label: 'Engineering' },
     { key: 'role', label: 'Senior' },
@@ -20,9 +29,7 @@ export default function FilterBarDemo() {
   const toast = useToast();
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'FilterBar' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Add-filter trigger plus a horizontally scrollable list of removable chips. Pair with a
         BottomSheet (or Select) to pick new filters.
@@ -59,6 +66,6 @@ export default function FilterBarDemo() {
           </View>
         </Card>
       </Section>
-    </ScrollView>
+    </>
   );
 }

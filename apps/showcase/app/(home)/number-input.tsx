@@ -7,16 +7,23 @@ import { NumberInput, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function NumberInputDemo() {
-  const [seats, setSeats] = useState<number | null>(5);
-  const [days, setDays] = useState<number | null>(0);
-  const [hours, setHours] = useState<number | null>(40);
-
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
       contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'NumberInput' }} />
+      <NumberInputBody />
+    </ScrollView>
+  );
+}
 
+export function NumberInputBody() {
+  const [seats, setSeats] = useState<number | null>(5);
+  const [days, setDays] = useState<number | null>(0);
+  const [hours, setHours] = useState<number | null>(40);
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Numeric input with built-in step buttons. Tap to type, or hit ± to nudge. Respects min /
         max bounds — buttons disable at the limits.
@@ -59,6 +66,6 @@ export default function NumberInputDemo() {
           />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

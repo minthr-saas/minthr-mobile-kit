@@ -9,14 +9,21 @@ export default function TextDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Text' }} />
+      <TextBody />
+    </ScrollView>
+  );
+}
 
+export function TextBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Five variants × six tones. Sentence case only — never ALL CAPS.
       </Text>
 
       <Section label="Variants">
         <View style={{ gap: spacing[2] }}>
-          <Text variant="title">Title — 22 / medium</Text>
+          <Text variant="title">Title — 18 / medium</Text>
           <Text variant="subtitle">Subtitle — 16 / medium</Text>
           <Text variant="body">Body — 14 / regular</Text>
           <Text variant="caption">Caption — 12 / regular</Text>
@@ -48,6 +55,6 @@ export default function TextDemo() {
           </Text>
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

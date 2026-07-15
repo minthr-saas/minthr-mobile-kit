@@ -7,13 +7,20 @@ import { Button, ConfirmDialog, Text, spacing } from '@minthr-saas/mobile-ui-kit
 import { Section } from './_components/Section';
 
 export default function ConfirmDialogDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'ConfirmDialog' }} />
+      <ConfirmDialogBody />
+    </ScrollView>
+  );
+}
+
+export function ConfirmDialogBody() {
   const [defaultOpen, setDefaultOpen] = useState(false);
   const [dangerOpen, setDangerOpen] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'ConfirmDialog' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Precomposed yes / no confirmation built on Modal. Use for destructive or
         irreversible actions that need an explicit user acknowledgment.
@@ -52,6 +59,6 @@ export default function ConfirmDialogDemo() {
         variant="danger"
         confirmLabel="Delete"
       />
-    </ScrollView>
+    </>
   );
 }

@@ -6,12 +6,19 @@ import { Button, Text, spacing, useToast } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function ToastDemo() {
-  const toast = useToast();
-
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Toast' }} />
+      <ToastBody />
+    </ScrollView>
+  );
+}
 
+export function ToastBody() {
+  const toast = useToast();
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Ephemeral top-aligned notification. Fired imperatively from anywhere via the
         useToast() hook. Auto-dismisses after 4 seconds (configurable).
@@ -82,6 +89,6 @@ export default function ToastDemo() {
           }}
         />
       </Section>
-    </ScrollView>
+    </>
   );
 }

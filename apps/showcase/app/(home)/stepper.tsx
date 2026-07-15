@@ -14,12 +14,19 @@ const steps = [
 ];
 
 export default function StepperDemo() {
-  const [current, setCurrent] = useState(1);
-
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Stepper' }} />
+      <StepperBody />
+    </ScrollView>
+  );
+}
 
+export function StepperBody() {
+  const [current, setCurrent] = useState(1);
+
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Numbered step indicator for multi-step flows. All steps before the current one are marked
         complete; later steps are upcoming.
@@ -46,6 +53,6 @@ export default function StepperDemo() {
           />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

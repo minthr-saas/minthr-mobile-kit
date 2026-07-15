@@ -5,12 +5,19 @@ import { Stack } from 'expo-router';
 import { CurrencyInput, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 
 export default function CurrencyInputScreen() {
-  const [amount, setAmount] = useState<number | null>(100);
-
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Stack.Screen options={{ title: 'CurrencyInput' }} />
+      <CurrencyInputBody />
+    </ScrollView>
+  );
+}
 
+export function CurrencyInputBody() {
+  const [amount, setAmount] = useState<number | null>(100);
+
+  return (
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Basic CurrencyInput</Text>
         <Text variant="body" tone="secondary">
@@ -66,7 +73,7 @@ export default function CurrencyInputScreen() {
           error="Value too low"
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

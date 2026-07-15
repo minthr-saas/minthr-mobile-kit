@@ -7,13 +7,20 @@ import { Radio, RadioGroup, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 import { Section } from './_components/Section';
 
 export default function RadioDemo() {
+  return (
+    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
+      <Stack.Screen options={{ title: 'Radio' }} />
+      <RadioBody />
+    </ScrollView>
+  );
+}
+
+export function RadioBody() {
   const [contract, setContract] = useState('full-time');
   const [layout, setLayout] = useState('grid');
 
   return (
-    <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-      <Stack.Screen options={{ title: 'Radio' }} />
-
+    <>
       <Text variant="body" tone="secondary">
         Mutually-exclusive choice group. Vertical or horizontal — both keep the same accessibility
         semantics.
@@ -55,6 +62,6 @@ export default function RadioDemo() {
           <Radio value="c" label="Option C" />
         </RadioGroup>
       </Section>
-    </ScrollView>
+    </>
   );
 }

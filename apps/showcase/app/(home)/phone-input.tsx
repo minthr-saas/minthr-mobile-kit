@@ -5,13 +5,20 @@ import { Stack } from 'expo-router';
 import { PhoneInput, Text, spacing } from '@minthr-saas/mobile-ui-kit';
 
 export default function PhoneInputScreen() {
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Stack.Screen options={{ title: 'PhoneInput' }} />
+      <PhoneInputBody />
+    </ScrollView>
+  );
+}
+
+export function PhoneInputBody() {
   const [phone, setPhone] = useState('');
   const [country, setCountry] = useState('FR');
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Stack.Screen options={{ title: 'PhoneInput' }} />
-
+    <>
       <View style={styles.section}>
         <Text variant="subtitle">Basic PhoneInput</Text>
         <Text variant="body" tone="secondary">
@@ -53,7 +60,7 @@ export default function PhoneInputScreen() {
           value="123"
         />
       </View>
-    </ScrollView>
+    </>
   );
 }
 

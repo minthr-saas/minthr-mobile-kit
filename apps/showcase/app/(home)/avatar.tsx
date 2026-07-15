@@ -9,7 +9,14 @@ export default function AvatarDemo() {
   return (
     <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
       <Stack.Screen options={{ title: 'Avatar' }} />
+      <AvatarBody />
+    </ScrollView>
+  );
+}
 
+export function AvatarBody() {
+  return (
+    <>
       <Text variant="body" tone="secondary">
         Person identifier. Six sizes, deterministic background color from the name, optional image
         URL and presence ring.
@@ -59,6 +66,6 @@ export default function AvatarDemo() {
           <Avatar name="Offline One" size="lg" presence="offline" />
         </View>
       </Section>
-    </ScrollView>
+    </>
   );
 }

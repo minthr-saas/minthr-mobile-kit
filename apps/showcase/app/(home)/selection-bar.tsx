@@ -21,6 +21,15 @@ const EMPLOYEES = [
 ];
 
 export default function SelectionBarDemo() {
+  return (
+    <>
+      <Stack.Screen options={{ title: 'SelectionBar' }} />
+      <SelectionBarBody />
+    </>
+  );
+}
+
+export function SelectionBarBody() {
   const [selected, setSelected] = useState<string[]>([]);
 
   function toggle(name: string) {
@@ -32,7 +41,6 @@ export default function SelectionBarDemo() {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ padding: spacing[5], gap: spacing[5] }}>
-        <Stack.Screen options={{ title: 'SelectionBar' }} />
 
         <Text variant="body" tone="secondary">
           Floating bottom-anchored bulk-actions pill. Appears when items are selected,
