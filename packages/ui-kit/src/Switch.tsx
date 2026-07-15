@@ -1,8 +1,12 @@
-import { Platform, Switch as RNSwitch, StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Animated, Pressable, StyleSheet, View } from 'react-native';
 
 import { lightColors, palette } from './tokens/colors';
+import { borders } from './tokens/borders';
+import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
 import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { rtlSign } from './utils/rtl';
 import { Text } from './Text';
 
 export interface SwitchProps {
@@ -13,20 +17,49 @@ export interface SwitchProps {
   description?: string;
 }
 
+// Control geometry — raw values are allowed for size specs / animation offsets.
+const TRACK_WIDTH = 40;
+const TRACK_HEIGHT = 23;
+const THUMB_SIZE = 16;
+const TRACK_PADDING = 3;
+// How far the thumb travels from the start edge to the end edge.
+const TRAVEL = TRACK_WIDTH - 2 * borders.thin - 2 * TRACK_PADDING - THUMB_SIZE;
+
 export function Switch({ value, onValueChange, disabled, label, description }: SwitchProps) {
+  const anim = useRef(new Animated.Value(value ? 1 : 0)).current;
+
+  useEffect(() => {
+    Animated.timing(anim, {
+      toValue: value ? 1 : 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [anim, value]);
+
+  const translateX = anim.interpolate({
+    inputRange: [0, 1],
+    // Multiply by rtlSign so the thumb slides toward the logical end edge in RTL.
+    outputRange: [0, TRAVEL * rtlSign()],
+  });
+
   const control = (
-    <RNSwitch
-      value={value}
-      onValueChange={onValueChange}
+    <Pressable
+      onPress={() => onValueChange(!value)}
       disabled={disabled}
-      trackColor={{ false: palette.gray[200], true: lightColors.brand }}
-      thumbColor={Platform.select({
-        ios: undefined,
-        android: value ? lightColors.surfacePrimary : palette.gray[100],
-        default: undefined,
-      })}
-      ios_backgroundColor={palette.gray[200]}
-    />
+      hitSlop={{ top: 11, bottom: 11, left: 2, right: 2 }}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: value, disabled: !!disabled }}
+      accessibilityLabel={label}
+      style={[styles.track, disabled && !label && !description && styles.disabled]}
+    >
+      <Animated.View
+        style={[
+          styles.thumb,
+          { transform: [{ translateX }] },
+          value ? styles.thumbOn : styles.thumbOff,
+        ]}
+      />
+    </Pressable>
   );
 
   if (!label && !description) {
@@ -34,7 +67,7 @@ export function Switch({ value, onValueChange, disabled, label, description }: S
   }
 
   return (
-    <View style={[styles.row, disabled && styles.rowDisabled]}>
+    <View style={[styles.row, disabled && styles.disabled]}>
       <View style={styles.textBlock}>
         {label ? (
           <Text variant="body" style={styles.label}>
@@ -53,13 +86,37 @@ export function Switch({ value, onValueChange, disabled, label, description }: S
 }
 
 const styles = StyleSheet.create({
+  track: {
+    width: TRACK_WIDTH,
+    height: TRACK_HEIGHT,
+    borderRadius: radius.full,
+    paddingHorizontal: TRACK_PADDING,
+    flexDirection: 'row',
+    alignItems: 'center',
+    // gray[100] = the documented "secondary surface" track fill (same token SegmentedControl uses).
+    backgroundColor: palette.gray[100],
+    borderWidth: borders.thin,
+    // Faint green ring — the semantic subtle-brand tint.
+    borderColor: lightColors.brandSubtle,
+  },
+  thumb: {
+    width: THUMB_SIZE,
+    height: THUMB_SIZE,
+    borderRadius: radius.full,
+  },
+  thumbOn: {
+    backgroundColor: lightColors.brand,
+  },
+  thumbOff: {
+    backgroundColor: lightColors.borderStrong,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing[3],
   },
-  rowDisabled: {
+  disabled: {
     opacity: 0.5,
   },
   textBlock: {
