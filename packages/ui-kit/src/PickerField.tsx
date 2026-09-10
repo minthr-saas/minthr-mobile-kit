@@ -53,10 +53,12 @@ export function PickerField({
   const dynamicStyles = useMemo(
     () => ({
       floatingLabel: { backgroundColor: colors.surfacePrimary },
-      field: { backgroundColor: colors.surfacePrimary, borderColor: colors.border },
+      field: { backgroundColor: colors.surfacePrimary, borderColor: colors.borderStrong },
       fieldActive: { borderColor: colors.brand },
       fieldError: { borderColor: colors.danger },
       fieldPressed: { backgroundColor: colors.surfaceSubtle },
+      fieldDisabled: { backgroundColor: colors.surfaceSubtle, borderColor: colors.border },
+      floatingLabelDisabled: { backgroundColor: colors.surfaceSubtle },
     }),
     [colors],
   );
@@ -90,18 +92,22 @@ export function PickerField({
         active && dynamicStyles.fieldActive,
         error ? styles.fieldError : null,
         error ? dynamicStyles.fieldError : null,
-        disabled && styles.fieldDisabled,
+        disabled && dynamicStyles.fieldDisabled,
         pressed && dynamicStyles.fieldPressed,
       ]}>
       {leading ? <View style={styles.leading}>{leading}</View> : null}
       <Text
         scaled={false}
-        tone={hasValue ? 'primary' : 'muted'}
+        tone={hasValue && !disabled ? 'primary' : 'muted'}
         numberOfLines={1}
         style={styles.value}>
         {hasValue ? value : showFloating ? '' : placeholder}
       </Text>
-      <Feather name="chevron-down" size={16} color={colors.textSecondary} />
+      <Feather
+        name="chevron-down"
+        size={16}
+        color={disabled ? colors.textMuted : colors.textSecondary}
+      />
     </Pressable>
   );
 
@@ -113,6 +119,7 @@ export function PickerField({
         style={[
           styles.floatingLabel,
           dynamicStyles.floatingLabel,
+          disabled && dynamicStyles.floatingLabelDisabled,
           {
             top: animRef.current.interpolate({ inputRange: [0, 1], outputRange: [11, -8] }),
             color: animRef.current.interpolate({
@@ -160,9 +167,6 @@ const styles = StyleSheet.create({
   },
   fieldError: {
     borderWidth: borders.thin,
-  },
-  fieldDisabled: {
-    opacity: 0.5,
   },
   leading: {
     flexShrink: 0,

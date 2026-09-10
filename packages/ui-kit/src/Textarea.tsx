@@ -19,6 +19,7 @@ export interface TextareaProps extends TextInputProps {
   hint?: string;
   error?: string;
   rows?: number;
+  disabled?: boolean;
 }
 
 export function Textarea({
@@ -26,6 +27,8 @@ export function Textarea({
   hint,
   error,
   rows = 4,
+  disabled,
+  editable,
   onFocus,
   onBlur,
   style,
@@ -34,17 +37,19 @@ export function Textarea({
 }: TextareaProps) {
   const { colors } = useTheme();
   const [focused, setFocused] = useState(false);
+  const isEditable = editable !== false && !disabled;
   const isActive = focused || Boolean(value);
 
   const dynamicStyles = useMemo(
     () => ({
       input: {
         backgroundColor: colors.surfacePrimary,
-        borderColor: colors.border,
+        borderColor: colors.borderStrong,
         color: colors.textPrimary,
       },
       inputFocused: { borderColor: colors.brand },
       inputError: { borderColor: colors.danger },
+      inputDisabled: { backgroundColor: colors.surfaceSubtle, color: colors.textSecondary },
     }),
     [colors],
   );
@@ -52,7 +57,7 @@ export function Textarea({
   return (
     <View style={styles.wrapper}>
       {label ? (
-        <Text scaled={false} color={isActive ? colors.brand : colors.textMuted} style={styles.label}>
+        <Text scaled={false} color={isEditable && isActive ? colors.brand : colors.textMuted} style={styles.label}>
           {label}
         </Text>
       ) : null}
@@ -60,6 +65,7 @@ export function Textarea({
         {...rest}
         value={value}
         multiline
+        editable={isEditable}
         textAlignVertical="top"
         placeholderTextColor={colors.textMuted}
         onFocus={(e) => {
@@ -77,6 +83,7 @@ export function Textarea({
           { minHeight: Math.max(rows, 1) * fontSize.sm * lineHeight.normal + spacing[3] * 2 },
           focused && [styles.inputFocused, dynamicStyles.inputFocused],
           error ? [styles.inputError, dynamicStyles.inputError] : null,
+          !isEditable && dynamicStyles.inputDisabled,
           style,
         ]}
       />

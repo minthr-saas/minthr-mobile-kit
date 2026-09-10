@@ -95,13 +95,16 @@ export function Input({
       },
       fieldWrap: {
         backgroundColor: colors.surfacePrimary,
-        borderColor: colors.border,
+        borderColor: colors.borderStrong,
       },
       fieldWrapFocused: {
         borderColor: colors.brand,
       },
       fieldWrapError: {
         borderColor: colors.danger,
+      },
+      labelDisabled: {
+        backgroundColor: colors.surfaceSubtle,
       },
       fieldWrapDisabled: {
         backgroundColor: colors.surfaceSubtle,
@@ -137,6 +140,7 @@ export function Input({
               style={[
                 styles.label,
                 dynamicStyles.label,
+                !isEditable && dynamicStyles.labelDisabled,
                 { top: floatingLabel.top, color: floatingLabel.color },
               ]}>
               {label}
@@ -144,8 +148,8 @@ export function Input({
           ) : (
             <Text
               scaled={false}
-              color={isActive ? colors.brand : colors.textMuted}
-              style={[styles.label, dynamicStyles.label, { top: -8 }]}>
+              color={isEditable && isActive ? colors.brand : colors.textMuted}
+              style={[styles.label, dynamicStyles.label, !isEditable && dynamicStyles.labelDisabled, { top: -8 }]}>
               {label}
             </Text>
           )
@@ -159,7 +163,6 @@ export function Input({
             focused && dynamicStyles.fieldWrapFocused,
             error ? styles.fieldWrapError : null,
             error ? dynamicStyles.fieldWrapError : null,
-            !isEditable && styles.fieldWrapDisabled,
             !isEditable && dynamicStyles.fieldWrapDisabled,
             containerStyle,
           ]}>
@@ -247,9 +250,6 @@ const styles = StyleSheet.create({
   },
   fieldWrapError: {
     borderWidth: borders.thin,
-  },
-  fieldWrapDisabled: {
-    opacity: 0.7,
   },
   fieldWrapMultiline: {
     height: undefined,

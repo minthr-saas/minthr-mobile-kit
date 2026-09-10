@@ -37,7 +37,7 @@ export function OtpInput({
 
   const dynamicStyles = useMemo(
     () => ({
-      cell: { backgroundColor: colors.surfacePrimary, borderColor: colors.border },
+      cell: { backgroundColor: colors.surfacePrimary, borderColor: colors.borderStrong },
       cellActive: { borderColor: colors.brand },
       cellError: { borderColor: colors.danger },
     }),

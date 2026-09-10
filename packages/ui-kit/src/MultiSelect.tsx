@@ -317,9 +317,9 @@ export function MultiSelect({
 
   const dynamicStyles = useMemo(
     () => ({
-      chipsTrigger: { backgroundColor: colors.surfacePrimary, borderColor: colors.border },
+      chipsTrigger: { backgroundColor: colors.surfacePrimary, borderColor: colors.borderStrong },
       chip: { backgroundColor: colors.brandSubtle },
-      trigger: { backgroundColor: colors.surfacePrimary, borderColor: colors.border },
+      trigger: { backgroundColor: colors.surfacePrimary, borderColor: colors.borderStrong },
       triggerActive: { borderColor: colors.brand },
       triggerDisabled: { backgroundColor: colors.surfaceSubtle, borderColor: colors.border },
       triggerError: { borderColor: colors.danger },

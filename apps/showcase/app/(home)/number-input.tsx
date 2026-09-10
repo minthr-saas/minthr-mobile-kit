@@ -66,6 +66,16 @@ export function NumberInputBody() {
           />
         </View>
       </Section>
+
+      <Section label="Disabled">
+        <NumberInput
+          value={12}
+          onChange={() => {}}
+          label="Approved days"
+          disabled
+          hint="Locked once the request is approved."
+        />
+      </Section>
     </>
   );
 }

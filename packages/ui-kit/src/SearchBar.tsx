@@ -58,7 +58,7 @@ export function SearchBar({
   const { colors } = useTheme();
   const dynamicStyles = useMemo(
     () => ({
-      fieldWrap: { backgroundColor: colors.surfaceSubtle, borderColor: colors.border },
+      fieldWrap: { backgroundColor: colors.surfaceSubtle, borderColor: colors.borderStrong },
       fieldWrapFocused: { borderColor: colors.brand, backgroundColor: colors.surfacePrimary },
       input: { color: colors.textPrimary },
     }),

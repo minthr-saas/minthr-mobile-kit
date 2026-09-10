@@ -37,19 +37,23 @@ export function NumberInput({
   min = -Infinity,
   max = Infinity,
   step = 1,
+  disabled,
+  editable,
   onFocus,
   onBlur,
   ...rest
 }: NumberInputProps) {
   const { colors } = useTheme();
   const [focused, setFocused] = useState(false);
+  const isEditable = editable !== false && !disabled;
   const isActive = focused || value !== null;
 
   const dynamicStyles = useMemo(
     () => ({
-      fieldWrap: { backgroundColor: colors.surfacePrimary, borderColor: colors.border },
+      fieldWrap: { backgroundColor: colors.surfacePrimary, borderColor: colors.borderStrong },
       fieldWrapFocused: { borderColor: colors.brand },
       fieldWrapError: { borderColor: colors.danger },
+      fieldWrapDisabled: { backgroundColor: colors.surfaceSubtle, borderColor: colors.border },
       stepButtonPressed: { backgroundColor: colors.surfaceSubtle },
       input: { color: colors.textPrimary, borderColor: colors.border },
     }),
@@ -60,15 +64,15 @@ export function NumberInput({
   const inc = () => onChange(clamp((value ?? 0) + step));
   const dec = () => onChange(clamp((value ?? 0) - step));
 
-  const incDisabled = value !== null && value >= max;
-  const decDisabled = value !== null && value <= min;
+  const incDisabled = !isEditable || (value !== null && value >= max);
+  const decDisabled = !isEditable || (value !== null && value <= min);
 
   return (
     <View style={styles.wrapper}>
       {label ? (
         <Text
           variant="caption"
-          color={isActive ? colors.brand : colors.textMuted}
+          color={isEditable && isActive ? colors.brand : colors.textMuted}
           style={styles.label}>
           {label}
         </Text>
@@ -81,6 +85,7 @@ export function NumberInput({
           focused && dynamicStyles.fieldWrapFocused,
           error ? styles.fieldWrapError : null,
           error ? dynamicStyles.fieldWrapError : null,
+          !isEditable && dynamicStyles.fieldWrapDisabled,
         ]}>
         <Pressable
           accessibilityRole="button"
@@ -108,6 +113,7 @@ export function NumberInput({
             }
           }}
           keyboardType="number-pad"
+          editable={isEditable}
           onFocus={(e) => {
             setFocused(true);
             onFocus?.(e);

@@ -285,10 +285,12 @@ export function TimePicker(props: TimePickerProps) {
   const dynamicStyles = useMemo(
     () => ({
       floatingLabel: { backgroundColor: colors.surfacePrimary },
-      field: { backgroundColor: colors.surfacePrimary, borderColor: colors.border },
+      field: { backgroundColor: colors.surfacePrimary, borderColor: colors.borderStrong },
       fieldActive: { borderColor: colors.brand },
       fieldError: { borderColor: colors.danger },
       fieldPressed: { backgroundColor: colors.surfaceSubtle },
+      fieldDisabled: { backgroundColor: colors.surfaceSubtle, borderColor: colors.border },
+      floatingLabelDisabled: { backgroundColor: colors.surfaceSubtle },
     }),
     [colors],
   );
@@ -343,7 +345,7 @@ export function TimePicker(props: TimePickerProps) {
         isOpen && dynamicStyles.fieldActive,
         error ? styles.fieldError : null,
         error ? dynamicStyles.fieldError : null,
-        disabled && styles.fieldDisabled,
+        disabled && dynamicStyles.fieldDisabled,
         pressed && dynamicStyles.fieldPressed,
       ]}>
       <Text
@@ -375,6 +377,7 @@ export function TimePicker(props: TimePickerProps) {
             style={[
               styles.floatingLabel,
               dynamicStyles.floatingLabel,
+              disabled && dynamicStyles.floatingLabelDisabled,
               {
                 top: animRef.current.interpolate({ inputRange: [0, 1], outputRange: [11, -8] }),
                 color: animRef.current.interpolate({
@@ -439,9 +442,6 @@ const styles = StyleSheet.create({
   },
   fieldError: {
     borderWidth: borders.thin,
-  },
-  fieldDisabled: {
-    opacity: 0.5,
   },
   // Mirrors `Input`'s TextInput — see the note in Select.tsx.
   value: {

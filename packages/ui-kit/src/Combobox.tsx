@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     minHeight: 44,
     paddingHorizontal: spacing[3],
     borderRadius: radius.md,
-    borderWidth: borders.thin,
+    borderWidth: borders.hair,
   },
   sheetContent: {
     flex: 1,

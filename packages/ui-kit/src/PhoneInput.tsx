@@ -203,7 +203,7 @@ export function PhoneInput({
 
   const dynamicStyles = useMemo(
     () => ({
-      indicator: { borderEndColor: colors.border, backgroundColor: colors.surfaceSubtle },
+      indicator: { borderEndColor: colors.borderStrong, backgroundColor: colors.surfaceSubtle },
     }),
     [colors],
   );

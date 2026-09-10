@@ -53,6 +53,15 @@ export function TextareaBody() {
           rows={5}
         />
       </Section>
+
+      <Section label="Disabled">
+        <Textarea
+          label="Contract terms"
+          value="Standard 35-hour week, reviewed annually."
+          rows={3}
+          disabled
+        />
+      </Section>
     </>
   );
 }
