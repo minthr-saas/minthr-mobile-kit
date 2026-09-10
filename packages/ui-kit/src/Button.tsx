@@ -14,7 +14,7 @@ import { useTheme } from './Theme';
 import { borders } from './tokens/borders';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { fontSize, fontWeight } from './tokens/typography';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'danger-ghost' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -154,7 +154,6 @@ const baseStyles = StyleSheet.create({
   disabled: { opacity: 0.5 },
   iconSlot: { alignItems: 'center', justifyContent: 'center' },
   label: {
-    fontFamily: fontFamily.sans,
     fontWeight: fontWeight.medium,
     textAlign: 'center',
   },

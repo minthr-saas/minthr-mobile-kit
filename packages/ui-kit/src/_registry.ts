@@ -31,7 +31,7 @@ export const kitComponents: readonly KitComponentEntry[] = [
     path: '/text',
     category: 'Typography',
     status: 'ready',
-    description: 'Title, subtitle, body, caption, mono — with primary/secondary/muted/brand/danger tones.',
+    description: 'Title, subtitle, body, caption, micro, mono — with primary/secondary/muted/brand/danger tones.',
   },
   {
     name: 'Button',

@@ -4,7 +4,7 @@ import { StyleSheet, View, type ViewProps } from 'react-native';
 
 import { borders } from './tokens/borders';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { fontSize, fontWeight } from './tokens/typography';
 import { Text } from './Text';
 import { useTheme } from './Theme';
 
@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
     borderWidth: borders.thin,
   },
   circleLabel: {
-    fontFamily: fontFamily.sans,
     fontSize: fontSize.xs,
     fontWeight: fontWeight.medium,
   },

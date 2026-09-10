@@ -9,10 +9,18 @@ import {
 import { useTheme } from './Theme';
 import { fontFamily, fontSize, fontWeight, lineHeight, sansForWeight, scaleFont } from './tokens/typography';
 
-export type TextVariant = 'title' | 'subtitle' | 'body' | 'caption' | 'mono';
+export type TextVariant = 'title' | 'subtitle' | 'body' | 'caption' | 'micro' | 'mono';
 export type TextTone = 'primary' | 'secondary' | 'muted' | 'inverse' | 'brand' | 'danger';
 
 export interface TextProps extends RNTextProps {
+  /**
+   * Type rank. Carries size, family, weight and line-height together — pick it
+   * for the element's role, don't rebuild a rank with `style`.
+   *
+   * `micro` is the bottom rank, for dense metadata only (a unit suffix, a chip
+   * label, a ratio). Pair it with `tone="muted"`; it is too small to carry
+   * emphasis, so never add a weight to it.
+   */
   variant?: TextVariant;
   tone?: TextTone;
   /**
@@ -33,6 +41,7 @@ const variantFontSize: Record<TextVariant, number> = {
   subtitle: fontSize.lg,
   body: fontSize.md,
   caption: fontSize.sm,
+  micro: fontSize['2xs'],
   mono: fontSize.sm,
 };
 
@@ -41,6 +50,7 @@ const variantLineHeight: Record<TextVariant, number> = {
   subtitle: Math.round(fontSize.lg * lineHeight.tight),
   body: Math.round(fontSize.md * lineHeight.normal),
   caption: Math.round(fontSize.sm * lineHeight.normal),
+  micro: Math.round(fontSize['2xs'] * lineHeight.normal),
   mono: Math.round(fontSize.sm * lineHeight.normal),
 };
 
@@ -99,7 +109,7 @@ export function Text({ variant = 'body', tone = 'primary', color, scaled = true,
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Record<TextVariant, TextStyle>>({
   title: {
     fontFamily: sansForWeight(fontWeight.medium),
     fontSize: fontSize['2xl'],
@@ -123,6 +133,12 @@ const styles = StyleSheet.create({
     fontSize: fontSize.sm,
     fontWeight: fontWeight.regular,
     lineHeight: variantLineHeight.caption,
+  },
+  micro: {
+    fontFamily: sansForWeight(fontWeight.regular),
+    fontSize: fontSize['2xs'],
+    fontWeight: fontWeight.regular,
+    lineHeight: variantLineHeight.micro,
   },
   mono: {
     fontFamily: fontFamily.mono,

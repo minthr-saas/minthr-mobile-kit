@@ -4,7 +4,7 @@ import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { borders } from './tokens/borders';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { fontSize, fontWeight } from './tokens/typography';
 import { rtlSign } from './utils/rtl';
 import { Text } from './Text';
 import { useTheme } from './Theme';
@@ -128,7 +128,6 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   label: {
-    fontFamily: fontFamily.sans,
     fontSize: fontSize.md,
     fontWeight: fontWeight.medium,
   },

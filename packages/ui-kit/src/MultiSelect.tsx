@@ -96,7 +96,6 @@ function MultiSelectSheetBody({
       optionSelected: { backgroundColor: colors.brandSubtle },
       onBrandSubtle: isDark ? palette.brand[100] : colors.brand,
       selectAllBorder: { borderBottomColor: colors.border },
-      footer: { borderTopColor: colors.border },
     }),
     [colors, isDark]
   );
@@ -272,7 +271,7 @@ function MultiSelectSheetBody({
       </View>
 
       {(currentValues.length > 0 || params.maxSelections != null) && (
-        <View style={[styles.footer, dynamicStyles.footer]}>
+        <View style={styles.footer}>
           <Text variant="caption" tone="secondary">
             {params.maxSelections != null
               ? `${currentValues.length} of ${params.maxSelections} selected`
@@ -562,6 +561,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: spacing[4],
     paddingVertical: spacing[3],
-    borderTopWidth: borders.hair,
   },
 });

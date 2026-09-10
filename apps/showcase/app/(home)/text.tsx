@@ -18,15 +18,16 @@ export function TextBody() {
   return (
     <>
       <Text variant="body" tone="secondary">
-        Five variants × six tones. Sentence case only — never ALL CAPS.
+        Six variants × six tones. Sentence case only — never ALL CAPS.
       </Text>
 
       <Section label="Variants">
         <View style={{ gap: spacing[2] }}>
-          <Text variant="title">Title — 18 / medium</Text>
-          <Text variant="subtitle">Subtitle — 16 / medium</Text>
-          <Text variant="body">Body — 14 / regular</Text>
-          <Text variant="caption">Caption — 12 / regular</Text>
+          <Text variant="title">Title — 16 / medium</Text>
+          <Text variant="subtitle">Subtitle — 13 / medium</Text>
+          <Text variant="body">Body — 12 / regular</Text>
+          <Text variant="caption">Caption — 11 / regular</Text>
+          <Text variant="micro" tone="muted">Micro — 9 / regular, dense metadata only</Text>
           <Text variant="mono">mono.font.example()</Text>
         </View>
       </Section>

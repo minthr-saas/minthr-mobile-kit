@@ -6,7 +6,7 @@ import { Text } from './Text';
 import { useTheme } from './Theme';
 import { borders } from './tokens/borders';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontWeight } from './tokens/typography';
+import { fontWeight } from './tokens/typography';
 
 export interface AvatarGroupItem {
   name: string;
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     padding: spacing[1],
   },
   overflowText: {
-    fontFamily: fontFamily.sans,
     fontWeight: fontWeight.medium,
   },
 });

@@ -5,7 +5,7 @@ import { useTheme } from './Theme';
 import { borders } from './tokens/borders';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { fontSize, fontWeight } from './tokens/typography';
 import { Text } from './Text';
 
 export interface OtpInputProps {
@@ -141,7 +141,6 @@ const styles = StyleSheet.create({
     borderWidth: borders.thin,
   },
   cellText: {
-    fontFamily: fontFamily.sans,
     fontSize: fontSize.lg,
     fontWeight: fontWeight.medium,
   },

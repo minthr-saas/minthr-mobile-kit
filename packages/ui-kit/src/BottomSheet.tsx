@@ -187,7 +187,7 @@ const SheetItem = React.memo(
     const dynamicStyles = useMemo(
       () => ({
         sheetBackground: { backgroundColor: colors.surfacePrimary },
-        footerContainer: { backgroundColor: colors.surfacePrimary, borderTopColor: colors.border },
+        footerContainer: { backgroundColor: colors.surfacePrimary },
       }),
       [colors]
     );
@@ -654,7 +654,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 1000,
     paddingTop: 12,
-    borderTopWidth: 1,
   },
 });
 

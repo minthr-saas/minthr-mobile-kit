@@ -32,7 +32,7 @@ import { palette } from './tokens/colors';
 import { radius } from './tokens/radius';
 import { shadows } from './tokens/shadows';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { fontSize, fontWeight } from './tokens/typography';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -218,7 +218,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   countText: {
-    fontFamily: fontFamily.sans,
     fontSize: 11,
     fontWeight: fontWeight.medium,
     fontVariant: ['tabular-nums'],

@@ -5,7 +5,7 @@ import { StyleSheet, View, type ViewProps } from 'react-native';
 import { Text } from './Text';
 import { useTheme } from './Theme';
 import { palette } from './tokens/colors';
-import { fontFamily, fontWeight } from './tokens/typography';
+import { fontWeight } from './tokens/typography';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type AvatarPresence = 'online' | 'away' | 'offline';
@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   initialsText: {
-    fontFamily: fontFamily.sans,
     fontWeight: fontWeight.medium,
   },
   presence: {

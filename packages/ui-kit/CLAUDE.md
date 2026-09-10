@@ -57,9 +57,9 @@ import {
   borders,        // hair: StyleSheet.hairlineWidth, thin: 1, thick: 2
   shadows,        // sm/md/lg/drawer cross-platform shadow objects (overlays only — Rule 1)
   fontFamily,     // sans (Inter_400Regular), sansMedium (Inter_500Medium), mono. Use sansForWeight() to map a weight → family.
-  fontSize,       // xs/sm/md/lg/xl/2xl
+  fontSize,       // 2xs:9, xs:10, sm:11, md:12, lg:13, xl:15, 2xl:16, 3xl:20, display:80
   fontWeight,     // regular: '400', medium: '500' (Rule 4 — these two only)
-  lineHeight,     // tight: 1.2, normal: 1.4, relaxed: 1.6 (multipliers)
+  lineHeight,     // tight: 1.15, normal: 1.25, relaxed: 1.4 (multipliers)
 } from '@minthr-saas/mobile-ui-kit';
 ```
 

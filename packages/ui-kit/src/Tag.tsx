@@ -7,7 +7,7 @@ import { useTheme } from './Theme';
 import { palette } from './tokens/colors';
 import { radius } from './tokens/radius';
 import { spacing } from './tokens/spacing';
-import { fontFamily, fontSize, fontWeight } from './tokens/typography';
+import { fontSize, fontWeight } from './tokens/typography';
 
 export type TagVariant = 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'info';
 
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.full,
   },
   label: {
-    fontFamily: fontFamily.sans,
     fontSize: fontSize.sm,
     fontWeight: fontWeight.medium,
   },

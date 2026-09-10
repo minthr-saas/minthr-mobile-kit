@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     gap: spacing[1],
   },
   label: {
-    fontFamily: fontFamily.sans,
     fontSize: fontSize.sm,
     fontWeight: fontWeight.medium,
   },
