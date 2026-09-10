@@ -19,7 +19,8 @@ export function IconButtonBody() {
     <>
       <Text variant="body" tone="secondary">
         Icon-only pressable. Must always carry an `accessibilityLabel` describing the action — the
-        icon alone is not enough for screen readers.
+        icon alone is not enough for screen readers. `quiet` is `ghost` with a muted icon, for a
+        secondary trigger that sits beside a search field or another quiet control.
       </Text>
 
       <Section label="Variants">
@@ -47,6 +48,12 @@ export function IconButtonBody() {
             icon="arrow-left"
             accessibilityLabel="Go back"
             variant="tint"
+            onPress={() => {}}
+          />
+          <IconButton
+            icon="calendar"
+            accessibilityLabel="Pick a month"
+            variant="quiet"
             onPress={() => {}}
           />
         </View>

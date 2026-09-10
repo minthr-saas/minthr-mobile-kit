@@ -214,7 +214,7 @@ export const kitComponents: readonly KitComponentEntry[] = [
     path: '/icon-button',
     category: 'Actions',
     status: 'ready',
-    description: 'Icon-only pressable in 4 variants × 3 sizes. Required accessibility label.',
+    description: 'Icon-only pressable in 6 variants × 3 sizes. Required accessibility label.',
   },
   {
     name: 'AvatarGroup',

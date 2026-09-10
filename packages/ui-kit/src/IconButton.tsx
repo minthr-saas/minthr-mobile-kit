@@ -7,7 +7,7 @@ import { borders } from './tokens/borders';
 import { palette } from './tokens/colors';
 import { radius } from './tokens/radius';
 
-export type IconButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'tint';
+export type IconButtonVariant = 'primary' | 'secondary' | 'ghost' | 'quiet' | 'danger' | 'tint';
 export type IconButtonSize = 'sm' | 'md' | 'lg';
 
 export interface IconButtonProps extends Omit<PressableProps, 'style' | 'children'> {
@@ -68,6 +68,12 @@ export function IconButton({
         container: { backgroundColor: 'transparent' },
         pressed: { backgroundColor: colors.surfaceSubtle },
         iconColor: colors.textPrimary,
+        ripple: colors.surfaceSubtle,
+      },
+      quiet: {
+        container: { backgroundColor: 'transparent' },
+        pressed: { backgroundColor: colors.surfaceSubtle },
+        iconColor: colors.textMuted,
         ripple: colors.surfaceSubtle,
       },
       danger: {
