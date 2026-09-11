@@ -71,7 +71,7 @@ Each component lives in its own `.tsx` under `packages/ui-kit/src/`. Demos live 
 |---|---|
 | **Typography** | `Text` |
 | **Actions** | `Button`, `IconButton`, `FAB` |
-| **Forms** | `Input`, `Textarea`, `NumberInput`, `OtpInput`, `PasswordStrength`, `Select`, `Switch`, `Checkbox`, `Radio` (+ `RadioGroup`), `SegmentedControl`, `FormField`, `FilterBar`, `Combobox`, `MultiSelect`, `CurrencyInput`, `PhoneInput`, `DatePicker`, `TimePicker`, `FileUpload`, `SearchBar`, `Calendar`, `SelectableCard` |
+| **Forms** | `Input`, `Textarea`, `NumberInput`, `OtpInput`, `PasswordStrength`, `Select`, `Switch`, `Checkbox`, `Radio` (+ `RadioGroup`), `SegmentedControl`, `Form` (+ `FormRow` / `FormSection`), `FormField`, `FilterBar`, `Combobox`, `MultiSelect`, `CurrencyInput`, `PhoneInput`, `DatePicker`, `TimePicker`, `FileUpload`, `SearchBar`, `Calendar`, `SelectableCard` |
 | **Display** | `Avatar`, `AvatarGroup`, `Badge`, `Tag`, `EmptyState` |
 | **Feedback** | `Alert`, `Banner`, `Callout`, `Skeleton`, `ProgressBar`, `Spinner`, `Toast` (`useToast` hook), `SelectionBar` |
 | **Overlays** | `Modal`, `BottomSheet`, `Tooltip`, `ConfirmDialog`, `Drawer`, `Menu` |

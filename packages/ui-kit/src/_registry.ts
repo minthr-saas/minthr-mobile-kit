@@ -161,6 +161,14 @@ export const kitComponents: readonly KitComponentEntry[] = [
     description: 'Multi-line text input with the same label / hint / error contract as Input.',
   },
   {
+    name: 'Form',
+    path: '/form',
+    category: 'Forms',
+    status: 'ready',
+    description:
+      'Form layout stack — content inset, field rhythm, side-by-side rows and titled sections.',
+  },
+  {
     name: 'FormField',
     path: '/form-field',
     category: 'Forms',

@@ -31,6 +31,7 @@ export * from './SheetHost';
 export * from './SheetHeader';
 export * from './Tooltip';
 export * from './Textarea';
+export * from './Form';
 export * from './FormField';
 export * from './SegmentedControl';
 export * from './FilterBar';
