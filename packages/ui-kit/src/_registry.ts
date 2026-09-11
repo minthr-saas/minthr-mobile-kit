@@ -183,6 +183,13 @@ export const kitComponents: readonly KitComponentEntry[] = [
     description: 'Pick-one selector with a sliding pill highlight. Useful for filters and toggles.',
   },
   {
+    name: 'ToggleGroup',
+    path: '/toggle-group',
+    category: 'Forms',
+    status: 'ready',
+    description: 'Brand-filled pills on a subtle track — pick one, or toggle each on its own.',
+  },
+  {
     name: 'Tabs',
     path: '/tabs',
     category: 'Navigation',

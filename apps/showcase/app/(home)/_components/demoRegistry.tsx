@@ -74,6 +74,7 @@ import { TextareaBody } from '../textarea';
 import { TimePickerBody } from '../time-picker';
 import { TimelineBody } from '../timeline';
 import { ToastBody } from '../toast';
+import { ToggleGroupBody } from '../toggle-group';
 import { TooltipBody } from '../tooltip';
 
 export interface DemoEntry {
@@ -145,5 +146,6 @@ export const demoRegistry: Record<string, DemoEntry> = {
   '/time-picker': { Body: TimePickerBody },
   '/timeline': { Body: TimelineBody },
   '/toast': { Body: ToastBody },
+  '/toggle-group': { Body: ToggleGroupBody },
   '/tooltip': { Body: TooltipBody },
 };

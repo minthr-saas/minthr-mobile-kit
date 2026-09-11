@@ -69,6 +69,7 @@ export * from './SelectableCard';
 export * from './StatCard';
 export * from './StatGrid';
 export * from './Timeline';
+export * from './ToggleGroup';
 export * from './Rating';
 export * from './BarChart';
 export * from './Slider';

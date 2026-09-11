@@ -73,7 +73,7 @@ export function Tabs<T extends string = string>({
               ) : null}
               {opt.label ? (
                 <Text
-                  variant="body"
+                  variant="caption"
                   tone={selected ? 'primary' : 'secondary'}
                   style={[fullWidth && styles.labelCentered, selected && styles.labelSelected]}>
                   {opt.label}
